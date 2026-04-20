@@ -1,43 +1,53 @@
 "use client";
 
 import { motion, MotionValue, useTransform } from "framer-motion";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 interface MolecularNodeProps {
+  id: string;
   title: string;
   year: string;
   organization: string;
   icon: ReactNode;
   techStack: string[];
+  achievements: string[];
   scrollProgress: MotionValue<number>;
   range: [number, number];
 }
 
 export default function MolecularNode({ 
+  id,
   title, 
   year, 
   organization,
   icon, 
   techStack,
+  achievements,
   scrollProgress, 
   range 
 }: MolecularNodeProps) {
   const [isHovered, setIsHovered] = useState(false);
   
   // Staggered entrance based on horizontal scroll
-  const scale = useTransform(scrollProgress, range, [0.5, 1]);
+  const scale = useTransform(scrollProgress, range, [0.6, 1]);
   const opacity = useTransform(scrollProgress, range, [0, 1]);
-  const y = useTransform(scrollProgress, range, [20, 0]);
+  const blurValue = useTransform(scrollProgress, range, ["blur(20px)", "blur(0px)"]);
+
+  // Calculate orbital skills (limiting to top 5 for clarity)
+  const displaySkills = techStack.slice(0, 5);
 
   return (
     <div 
-      className="relative z-20 flex flex-col items-center"
+      className="relative z-20 flex flex-col items-center justify-center p-32" // Added padding for orbit room
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Liquid Wobble Bubble */}
+      {/* 
+          Main Node Container 
+          DOUBLED SIZE: w-64/h-64 to w-[400px]/h-[400px] on desktop
+      */}
       <motion.div
-        style={{ scale, opacity, y }}
+        style={{ scale, opacity, filter: blurValue }}
         animate={{
           borderRadius: [
             "60% 40% 30% 70% / 60% 30% 70% 40%",
@@ -46,48 +56,102 @@ export default function MolecularNode({
           ],
         }}
         transition={{
-          duration: 8,
+          duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
         }}
         whileHover={{
-          scale: 1.15,
-          boxShadow: "0 0 50px rgba(59, 130, 246, 0.5)",
-          transition: { duration: 0.3 }
+          scale: 1.05,
+          boxShadow: "0 0 100px rgba(59, 130, 246, 0.4)",
+          transition: { duration: 0.5 }
         }}
-        className="w-40 h-40 md:w-56 md:h-56 flex flex-col items-center justify-center glass-morphism border-white/20 relative cursor-pointer overflow-hidden p-6 text-center"
+        className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex flex-col items-center justify-center glass-morphism border-white/20 relative cursor-pointer overflow-hidden p-8 text-center"
       >
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        
-        <div className="text-blue-400 mb-4 scale-150 group-hover:scale-175 transition-transform">
-          {icon}
+        {/* Achievement Cloud: Pulsing hard facts inside */}
+        <div className="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-none">
+          {achievements.map((fact, i) => (
+            <motion.div
+              key={fact}
+              animate={{
+                opacity: [0.1, 0.4, 0.1],
+                scale: [0.9, 1.1, 0.9],
+              }}
+              transition={{
+                duration: 4,
+                delay: i * 1.5,
+                repeat: Infinity,
+              }}
+              className="text-[10px] md:text-[14px] font-black text-blue-400 absolute uppercase tracking-[0.3em] whitespace-nowrap opacity-20"
+              style={{
+                top: `${20 + i * 20}%`,
+                left: i % 2 === 0 ? '10%' : 'auto',
+                right: i % 2 !== 0 ? '10%' : 'auto',
+              }}
+            >
+              {fact}
+            </motion.div>
+          ))}
         </div>
-        
-        <div className="text-white/40 font-mono text-[10px] mb-1 uppercase tracking-tighter">{year}</div>
-        <h3 className="text-white font-bold text-sm md:text-base leading-tight px-4">{title}</h3>
-        <p className="text-blue-300/60 text-[10px] md:text-xs mt-1">{organization}</p>
+
+        {/* Branding & Info */}
+        <div className="relative z-10">
+          <motion.div 
+            animate={isHovered ? { rotate: [0, -10, 10, 0] } : {}}
+            className="text-blue-500 mb-6 scale-[2] md:scale-[3] opacity-60"
+          >
+            {icon}
+          </motion.div>
+          
+          <div className="text-white/40 font-mono text-xs md:text-sm mb-2 uppercase tracking-[0.3em] font-black">{year}</div>
+          <h3 className="text-white font-black text-lg md:text-3xl leading-tight px-12 mb-4 tracking-tighter uppercase whitespace-normal">
+            {title}
+          </h3>
+          <p className="text-blue-400/80 font-bold text-xs md:text-lg tracking-wide bg-blue-500/10 px-4 py-1 rounded-full border border-blue-500/20">
+            {organization}
+          </p>
+        </div>
+
+        {/* Interactive Overlay Glow */}
+        <div className="absolute inset-0 bg-radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%) pointer-events-none" />
       </motion.div>
 
-      {/* Tech Stack Tooltip */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 10 }}
-        animate={{ 
-          opacity: isHovered ? 1 : 0, 
-          scale: isHovered ? 1 : 0.9, 
-          y: isHovered ? 0 : 10 
-        }}
-        className="absolute bottom-full mb-8 pointer-events-none"
-      >
-        <div className="glass-morphism rounded-xl px-4 py-3 border-blue-500/30 flex flex-wrap gap-2 justify-center max-w-[280px]">
-          {techStack.map(tech => (
-            <span key={tech} className="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-[9px] text-blue-200 font-medium whitespace-nowrap">
-              {tech}
-            </span>
-          ))}
-          {/* Tooltip Arrow */}
-          <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white/10" />
-        </div>
-      </motion.div>
+      {/* 
+          SKILL ORBIT SYSTEM 
+          Atoms rotating around the primary career node
+      */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="w-[450px] h-[450px] md:w-[650px] md:h-[650px] relative"
+        >
+          {displaySkills.map((skill, index) => {
+            const angle = (index / displaySkills.length) * (2 * Math.PI);
+            // Safe SSR radius calculation
+            const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 160 : 320;
+            
+            return (
+              <motion.div
+                key={skill}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  x: Math.cos(angle) * radius,
+                  y: Math.sin(angle) * radius,
+                }}
+                className="w-16 h-16 md:w-24 md:h-24 glass-morphism rounded-full flex items-center justify-center p-2 text-center border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+              >
+                <div className="text-white/80 font-black text-[8px] md:text-[10px] uppercase leading-none tracking-tighter">
+                  {skill}
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
     </div>
   );
 }

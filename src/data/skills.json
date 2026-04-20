@@ -1,0 +1,26 @@
+{
+  "clusters": [
+    {
+      "id": "strategy",
+      "name": "Product Strategy & Discovery",
+      "skills": ["Product Discovery", "User Research", "MVP Definition", "Roadmap Planning", "B2B SaaS", "Figma", "Miro", "Adobe Analytics", "Quantilope"],
+      "relevance": 0.8
+    },
+    {
+      "id": "ai-tech",
+      "name": "AI & Technical Excellence",
+      "skills": ["Python", "SQL", "MongoDB", "Machine Learning", "MLOps", "Cloud Computing", "AWS/GCP", "Docker", "Kubernetes", "VS Code"],
+      "relevance": 1.0
+    },
+    {
+      "id": "agile",
+      "name": "Agile Leadership",
+      "skills": ["Scrum", "Certified PO", "Scrum Master", "Kanban", "OKRs", "SAFe", "User Stories", "Stakeholder Mgmt", "JIRA", "Tableau"],
+      "relevance": 0.9
+    }
+  ],
+  "languages": [
+    { "name": "Deutsch", "level": "Muttersprache", "code": "DE" },
+    { "name": "English", "level": "Full Professional", "code": "EN" }
+  ]
+}

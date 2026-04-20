@@ -16,10 +16,10 @@ import {
 } from "lucide-react";
 import ParticlesBG from "./ParticlesBG";
 import MolecularNode from "./MolecularNode";
+import Header from "./Header";
 import { useState, useRef, ReactNode } from "react";
 import roadmapData from "../data/roadmap.json";
 
-// Map icon names to components
 const iconMap: Record<string, ReactNode> = {
   education: <Terminal className="w-full h-full" />,
   professional: <Cpu className="w-full h-full" />,
@@ -30,7 +30,7 @@ const iconMap: Record<string, ReactNode> = {
 export default function Roadmap() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // 1. Capture HORIZONTAL scroll progress
+  // Capture horizontal scroll
   const { scrollXProgress } = useScroll({
     container: containerRef
   });
@@ -41,35 +41,28 @@ export default function Roadmap() {
     restDelta: 0.001
   });
 
-  // Calculate dynamic line paths based on scroll
-  // For 4 sections, we have transitions at 0.33, 0.66
-  const line1Length = useTransform(smoothProgress, [0, 0.33], [0, 1]);
-  const line2Length = useTransform(smoothProgress, [0.33, 0.66], [0, 1]);
-  const line3Length = useTransform(smoothProgress, [0.66, 1], [0, 1]);
-
   const userPhone = process.env.NEXT_PUBLIC_USER_PHONE || "+49 ...";
   const userEmail = process.env.NEXT_PUBLIC_USER_EMAIL || "chris@lange.com";
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-[#020617]">
+      <Header />
       <ParticlesBG />
 
-      {/* Global molecular connection layer (Fixed background) */}
-      <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
-        <svg className="w-full h-full">
-          <motion.path
-            d="M 100,500 L 1100,500"
-            fill="none"
-            stroke="#3b82f6"
-            strokeWidth="1"
-            strokeDasharray="10 10"
-            style={{ 
-              pathLength: line1Length,
-              opacity: useTransform(smoothProgress, [0, 0.1], [0, 0.2])
-            }}
-            className="hidden lg:block translate-y-[15%]"
-          />
-        </svg>
+      {/* 
+          Progress Indicator (Liquid Bar) 
+          Helps users navigate the 10-phase sequence
+      */}
+      <div className="fixed bottom-12 left-1/2 -translate-x-1/2 w-64 h-1 bg-white/5 rounded-full z-50 overflow-hidden">
+        <motion.div 
+          style={{ width: useTransform(smoothProgress, [0, 1], ["0%", "100%"]) }}
+          className="h-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+        />
+        <div className="flex justify-between mt-2 px-1 text-[8px] font-mono text-white/20 uppercase tracking-widest">
+           <span>Start</span>
+           <span>Christoph Lange Journey</span>
+           <span>End</span>
+        </div>
       </div>
 
       {/* Horizontal Scroll Snap Container */}
@@ -77,7 +70,7 @@ export default function Roadmap() {
         ref={containerRef}
         className="scroll-container relative z-20"
       >
-        {/* Section 0: Intro / Christoph Lange Branding */}
+        {/* Intro Section */}
         <section className="section bg-transparent">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -85,115 +78,120 @@ export default function Roadmap() {
             className="max-w-4xl px-12 text-center md:text-left"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-8 tracking-widest uppercase">
-              <Globe className="w-4 h-4" />
-              <span>Senior Product Manager | AI & Agile Expert</span>
+              <Sparkles className="w-4 h-4" />
+              <span>Full Portfolio // Full Lifecycle Engineering</span>
             </div>
-            <h1 className="text-7xl md:text-9xl font-black tracking-tighter mb-8 leading-none">
-              Christoph <br />
-              <span className="text-blue-500">Lange.</span>
+            <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-none">
+              Vision in <br />
+              <span className="text-blue-500">Atomic Detail.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/40 max-w-2xl leading-relaxed mb-12 font-light">
-              Creating the bridge between human vision and AI-driven reality. 
-              High-performance product leadership fueled by elite competition.
+            <p className="text-xl md:text-3xl text-white/40 max-w-2xl leading-relaxed mb-12 font-light">
+              Hier findest du alle Stationen meiner Karriere – von der Bundeswehr bis zu AI Project Management. 
+              Navigiere horizontal durch mein molekulares Ökosystem.
             </p>
             <div className="flex items-center gap-4 text-blue-400 font-mono text-sm">
-              <span className="animate-pulse">●</span> SCROLL TO INITIATE SEQUENCE
-              <ChevronRight className="w-4 h-4 animate-bounce-x" />
+              <div className="w-12 h-[1px] bg-blue-500" /> SCROLL HORIZONTALLY TO BEGIN
             </div>
           </motion.div>
         </section>
 
-        {/* Dynamic Milestone Sections */}
-        {roadmapData.milestones.map((milestone, index) => (
-          <section key={milestone.id} className="section bg-transparent">
-            <div className="grid lg:grid-cols-2 gap-24 items-center max-w-7xl px-12">
-              {/* The "Atom" (Node) */}
-              <div className="flex justify-center">
-                <MolecularNode 
-                  year={milestone.year}
-                  title={milestone.title}
-                  organization={milestone.organization}
-                  icon={iconMap[milestone.type] || <Rocket />}
-                  techStack={milestone.techStack}
-                  scrollProgress={smoothProgress}
-                  range={[index * 0.25, (index + 1) * 0.25]}
-                />
+        {/* Milestone Sections (The Full CV) */}
+        {roadmapData.milestones.map((milestone, index) => {
+          const sectionCount = roadmapData.milestones.length;
+          // Calculate active range for this milestone in the global scroll
+          const rangeStart = 0.1 + (index / (sectionCount + 1)) * 0.8;
+          const rangeEnd = 0.1 + ((index + 1) / (sectionCount + 1)) * 0.8;
+
+          return (
+            <section key={milestone.id} className="section bg-transparent px-8">
+              <div className="grid lg:grid-cols-2 gap-8 items-center max-w-[1400px] w-full">
+                {/* The Atom with Skill Orbitals */}
+                <div className="flex justify-center scale-90 md:scale-100">
+                  <MolecularNode 
+                    id={milestone.id}
+                    year={milestone.year}
+                    title={milestone.title}
+                    organization={milestone.organization}
+                    icon={iconMap[milestone.type] || <Rocket />}
+                    techStack={milestone.techStack}
+                    achievements={milestone.achievements}
+                    scrollProgress={smoothProgress}
+                    range={[rangeStart, rangeEnd]}
+                  />
+                </div>
+
+                {/* Content Card (Full Screen Detail) */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="glass-morphism rounded-[3rem] p-8 md:p-16 border-white/5 relative overflow-hidden group min-h-[400px] md:min-h-[500px]"
+                >
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+                  
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="h-px w-12 bg-blue-500/30" />
+                    <h4 className="text-blue-400 font-mono text-sm font-black uppercase tracking-[0.2em]">{milestone.year}</h4>
+                  </div>
+
+                  <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter uppercase">{milestone.title}</h2>
+                  
+                  <div className="text-lg md:text-2xl text-white/50 leading-relaxed font-light mb-12">
+                     {milestone.description}
+                  </div>
+                  
+                  {/* Highlights Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {milestone.achievements.map(ach => (
+                      <div key={ach} className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                        <span className="text-xs md:text-sm text-white/70 font-bold tracking-tight">{ach}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
+            </section>
+          )
+        })}
 
-              {/* The Detail Card */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="glass-morphism rounded-3xl p-12 relative overflow-hidden group border-white/5 active:border-blue-500/30 transition-colors"
-              >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-500/10 transition-colors" />
-                
-                <h4 className="text-blue-400 font-mono text-sm mb-4 uppercase tracking-[0.2em]">Phase {index + 1} // {milestone.year}</h4>
-                <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">{milestone.title}</h2>
-                <div className="text-xl text-white/50 leading-relaxed font-light mb-10">
-                   {milestone.description}
-                </div>
-                
-                <div className="flex flex-wrap gap-3">
-                  {milestone.techStack.map(tech => (
-                    <span key={tech} className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/40 font-medium">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </section>
-        ))}
-
-        {/* Final Section: Contact & Footer */}
-        <section className="section bg-transparent">
-          <div className="max-w-6xl w-full px-12 grid md:grid-cols-2 gap-24 items-center">
+        {/* Final Contact Section */}
+        <section className="section bg-transparent px-12">
+          <div className="max-w-6xl w-full grid md:grid-cols-2 gap-24 items-center">
              <div>
-               <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter">Ready to <br /><span className="text-blue-500 underline decoration-blue-500/20 underline-offset-8">accelerate?</span></h2>
-               <p className="text-xl text-white/40 font-light mb-12">
-                 Lass uns die nächste Stufe deines Produkts gemeinsam zünden. Agile Methoden treffen auf KI-Präzision.
+               <h2 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none">Initiate <br /><span className="text-blue-500">Scale.</span></h2>
+               <p className="text-xl text-white/40 font-light mb-12 max-w-md">
+                 Der Transfer von High-Performance aus dem Leistungssport in das Product Management schafft unschlagbare Ergebnisse.
                </p>
                
-               <div className="space-y-4">
-                  <a href={`mailto:${userEmail}`} className="flex items-center gap-6 group p-4 rounded-2xl hover:bg-white/5 transition-all w-fit">
-                    <div className="w-14 h-14 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-black transition-all">
+               <div className="space-y-6">
+                  <a href={`mailto:${userEmail}`} className="flex items-center gap-6 group p-4 rounded-3xl hover:bg-white/5 transition-all w-fit pointer-events-auto">
+                    <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-black transition-all">
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-white/30 uppercase tracking-widest mb-1">E-Mail Address</div>
-                      <div className="text-lg text-white/80">{userEmail}</div>
+                      <div className="text-[10px] text-white/30 uppercase tracking-[0.3em] font-black mb-1">Send Pulse</div>
+                      <div className="text-xl text-white/80 font-bold tracking-tight">{userEmail}</div>
                     </div>
                   </a>
-                  <div className="flex items-center gap-6 group p-4 rounded-2xl w-fit">
-                    <div className="w-14 h-14 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                      <Phone className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] text-white/30 uppercase tracking-widest mb-1">Direct Connection</div>
-                      <div className="text-lg text-white/80">{userPhone}</div>
-                    </div>
-                  </div>
                </div>
              </div>
 
-             <div className="bg-blue-500/5 rounded-[3rem] p-12 border border-blue-500/10 relative overflow-hidden">
+             <div className="bg-blue-500/5 rounded-[4rem] p-12 border border-blue-500/10 relative overflow-hidden backdrop-blur-xl">
                 <Code2 className="w-16 h-16 text-blue-500 mb-8" />
                 <p className="text-sm font-mono text-blue-200/40 leading-relaxed mb-12">
-                   // Build Status: Production Ready <br />
+                   // CV Integrity: Total Synchronization <br />
                    // Identity: Christoph Lange <br />
-                   // Origin: AI Vibe-Coding with Antigravity
+                   // Build: Premium Liquid Ecosystem 
                 </p>
-                <button className="w-full py-6 rounded-2xl bg-white text-black font-bold text-lg hover:bg-blue-500 hover:text-white transition-all flex items-center justify-center gap-3 shadow-[0_0_50px_rgba(59,130,246,0.3)]">
-                  Download Project Specs
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+                <div className="flex gap-4">
+                  <button className="flex-1 py-6 rounded-3xl bg-blue-600 text-white font-black text-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-3 shadow-[0_0_50px_rgba(59,130,246,0.3)] uppercase tracking-tighter">
+                    Contact Chris
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
              </div>
           </div>
-
-          <footer className="absolute bottom-12 left-0 w-full text-center text-white/10 text-[10px] font-mono tracking-widest uppercase">
-            © {new Date().getFullYear()} lange-roadmap.io | High Performance PM Series
-          </footer>
         </section>
       </div>
     </div>

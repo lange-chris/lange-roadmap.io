@@ -2,39 +2,103 @@
   "milestones": [
     {
       "id": "bootcamp",
-      "year": "2026",
-      "title": "AI Project Management Bootcamp",
-      "organization": "neuefische",
-      "description": "Deep dive into MLOps, AI Strategy, and Python. Bridging the gap between product management and high-performance AI implementations.",
-      "techStack": ["MLOps", "AI Strategy", "Python", "LLMs"],
-      "type": "education"
+      "year": "01/2026 – 06/2026",
+      "title": "AI Project Manager (Interdisziplinäre Spezialisierung)",
+      "organization": "neuefische GmbH",
+      "description": "Identifikation und Validierung von Machine Learning Opportunitäten; Strategie von Prototyping bis Skalierung in Cloud-Infrastrukturen (AWS/GCP). Aufbau von ML-Pipelines und MLOps-Workflows.",
+      "techStack": ["Python", "SQL", "MongoDB", "Cloud-Computing", "Docker", "Kubernetes"],
+      "type": "education",
+      "achievements": ["AI Strategy", "MLOps", "KI-Compliance"]
+    },
+    {
+      "id": "agile-cert",
+      "year": "06/2025 – 07/2025",
+      "title": "Agile Scrum Product Owner & Scrum Master",
+      "organization": "EXIN, Hamburg",
+      "description": "Zertifizierter Product Owner & Scrum Master. Vertiefung agiler Frameworks zur Steigerung der Teameffizienz.",
+      "techStack": ["Scrum", "Kanban", "Leadership"],
+      "type": "education",
+      "achievements": ["Certified PO", "Certified Scrum Master"]
     },
     {
       "id": "xing-pm",
-      "year": "2023–2025",
+      "year": "03/2023 – 02/2025",
       "title": "Product Manager",
-      "organization": "XING",
-      "description": "Strategische Verantwortung für ein 50 Mio. € Portfolio. Implementierung von AI-Kampagnen zur Steigerung der Response-Rate um 80% und Conversion-Optimierung (+60%) durch ein umfassendes UX-Redesign.",
-      "techStack": ["Product Strategy", "AI Marketing", "UX Design", "Conversion Optimization"],
-      "type": "professional"
+      "organization": "XING, Hamburg",
+      "description": "Full Lifecycle Product Ownership der XING Active Sourcing Tools (Umsatzvolumen 50 Mio. €). Launch von KI-Kampagnen mit 80% Steigerung der Response-Rate. Leitung eines internationalen Teams.",
+      "techStack": ["Product Strategy", "AI Marketing", "Conversion Optimization"],
+      "type": "professional",
+      "achievements": ["50 Mio. € Portfolio", "80% Response Rate Boost", "60% Conversion UX"]
     },
     {
-      "id": "xing-consultant",
-      "year": "2021–2023",
-      "title": "Recruiting Consultant & Interim PM",
-      "organization": "XING",
-      "description": "Agile Transformation von Recruiting-Prozessen. Einführung von Workflow-Automatisierungen, die eine Zeitersparnis von 20% in der Kandidatenansprache ermöglichten.",
-      "techStack": ["Agile Transformation", "Workflow Automation", "Stakeholder Management"],
-      "type": "professional"
+      "id": "xing-interim",
+      "year": "09/2021 – 02/2023",
+      "title": "Recruiting Consultant & Interim Product Manager",
+      "organization": "XING, Hamburg",
+      "description": "Agile Transformation und Workflow-Automatisierung mit 20% Zeitersparnis pro Prozess. Reduzierung von Rework um 25%.",
+      "techStack": ["Agile Transformation", "Workflow Automation", "Stakeholder Mgmt"],
+      "type": "professional",
+      "achievements": ["20% Time Saving", "25% Rework Reduction"]
     },
     {
-      "id": "dragon-boat",
-      "year": "All-time",
-      "title": "High-Performance Leadership",
-      "organization": "Dragon Boat Racing",
-      "description": "Multiple German and European Champion. Transfer von High-Performance-Prinzipien (Synchronisation, Ausdauer, Fokus) auf agiles Product Management.",
-      "techStack": ["Leadership", "Team Synergy", "Peak Performance", " Resilience"],
-      "type": "personal"
+      "id": "pluss-recruitment",
+      "year": "09/2019 – 08/2021",
+      "title": "Recruitment Specialist",
+      "organization": "pluss Holding GmbH",
+      "description": "Beratung von 30 Standorten in Recruiting-Fragen. Analyse relevanter Metriken zur Optimierung der Einstellungsprozesse.",
+      "techStack": ["HR Metrics", "Process Optimization", "Consulting"],
+      "type": "professional",
+      "achievements": ["30+ Locations Managed"]
+    },
+    {
+      "id": "career-team",
+      "year": "02/2017 – 08/2019",
+      "title": "HR-Consultant",
+      "organization": "CareerTeam GmbH",
+      "description": "Personalberatung für digitale Fach- und Führungskräfte.",
+      "techStack": ["Executive Search", "Digital Talent", "Networking"],
+      "type": "professional",
+      "achievements": ["Digital Leadership Focus"]
+    },
+    {
+      "id": "coach-assistant",
+      "year": "08/2016 – 01/2017",
+      "title": "Management Assistant & Wakeboard Coach",
+      "organization": "Seilbahn NB / SkiRixen USA",
+      "description": "Unterstützung des Managements und professionelles Coaching in den USA/Deutschland.",
+      "techStack": ["Management", "Coaching", "International Experience"],
+      "type": "professional",
+      "achievements": ["US Expansion Support"]
+    },
+    {
+      "id": "bachelor",
+      "year": "2012 – 2016",
+      "title": "Bachelor of Arts – Business Administration",
+      "organization": "Fachhochschule Stralsund",
+      "description": "Schwerpunkte: Personalmanagement, International Business Management (Europameister im Drachenboot).",
+      "techStack": ["Business Admin", "HR Management", "International Business"],
+      "type": "education",
+      "achievements": ["High Performance Athlete"]
+    },
+    {
+      "id": "insurance",
+      "year": "2008 – 2011",
+      "title": "Kaufmann für Versicherungen und Finanzen",
+      "organization": "ERGO Group AG",
+      "description": "Duale Ausbildung mit Fokus auf Beratung und Finanzwesen.",
+      "techStack": ["Finance", "Insurance", "Sales"],
+      "type": "education",
+      "achievements": ["Professional Certification"]
+    },
+    {
+      "id": "military",
+      "year": "2007 – 2008",
+      "title": "Grundwehrdienst",
+      "organization": "Bundeswehr",
+      "description": "Pflichtdienst mit Fokus auf Disziplin und Teamführung.",
+      "techStack": ["Teamwork", "Security", "Resilience"],
+      "type": "professional",
+      "achievements": ["Basic Military Training"]
     }
   ]
 }
