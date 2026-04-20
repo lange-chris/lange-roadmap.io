@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Christoph Lange | AI-Driven Product Management Portfolio
 
-## Getting Started
+This is a premium, interactive professional roadmap for **Christoph Lange**, a Senior Product Manager specializing in **AI Strategy**, **Agile Methodologies**, and **High-Performance Leadership**. 
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Vision & Strategy
+Built with a "Liquid Molecular" design aesthetic, this portfolio visualizes the fluid progression of Christoph's career milestones—from strategic portfolio management at XING to advanced AI implementations. It bridges technical precision with product vision.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Tech Stack & Architecture
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4 (Full-screen Horizontal Scroll Snap)
+- **Animations**: Framer Motion (Liquid Wobble & Staggered Scroll Sequences)
+- **Liquid Engine**: react-tsparticles (Autonomous particle flow)
+- **Data Driven**: Centralized `roadmap.json` for milestone management
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧬 Key Milestones
+- **AI Project Management (neuefische)**: Mastery of MLOps, AI Strategy, and Python architectures.
+- **Product Management (XING)**: Directed a €50M portfolio, achieving 80% increases in response rates through AI-driven campaigns.
+- **Agile Leadership (XING)**: led agile transformations resulting in significant operational efficiency gains.
+- **High Performance (Dragon Boat)**: Multi-time European Champion, translating elite athletic synchronization principles to scaled product teams.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🤖 Git-Automatik & Development
+This project was developed using **Antigravity** (AI Vibe-Coding). It leverages autonomous agentic workflows to ensure high-performance code, premium aesthetics, and secure data handling.
 
-To learn more about Next.js, take a look at the following resources:
+> [!IMPORTANT]
+> **Environment Protection**: Sensitive contact data is managed via `.env` files. No hardcoded credentials exist in this public repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Crafted with precision by Antigravity.*

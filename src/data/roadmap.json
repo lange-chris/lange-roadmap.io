@@ -1,0 +1,40 @@
+{
+  "milestones": [
+    {
+      "id": "bootcamp",
+      "year": "2026",
+      "title": "AI Project Management Bootcamp",
+      "organization": "neuefische",
+      "description": "Deep dive into MLOps, AI Strategy, and Python. Bridging the gap between product management and high-performance AI implementations.",
+      "techStack": ["MLOps", "AI Strategy", "Python", "LLMs"],
+      "type": "education"
+    },
+    {
+      "id": "xing-pm",
+      "year": "2023–2025",
+      "title": "Product Manager",
+      "organization": "XING",
+      "description": "Strategische Verantwortung für ein 50 Mio. € Portfolio. Implementierung von AI-Kampagnen zur Steigerung der Response-Rate um 80% und Conversion-Optimierung (+60%) durch ein umfassendes UX-Redesign.",
+      "techStack": ["Product Strategy", "AI Marketing", "UX Design", "Conversion Optimization"],
+      "type": "professional"
+    },
+    {
+      "id": "xing-consultant",
+      "year": "2021–2023",
+      "title": "Recruiting Consultant & Interim PM",
+      "organization": "XING",
+      "description": "Agile Transformation von Recruiting-Prozessen. Einführung von Workflow-Automatisierungen, die eine Zeitersparnis von 20% in der Kandidatenansprache ermöglichten.",
+      "techStack": ["Agile Transformation", "Workflow Automation", "Stakeholder Management"],
+      "type": "professional"
+    },
+    {
+      "id": "dragon-boat",
+      "year": "All-time",
+      "title": "High-Performance Leadership",
+      "organization": "Dragon Boat Racing",
+      "description": "Multiple German and European Champion. Transfer von High-Performance-Prinzipien (Synchronisation, Ausdauer, Fokus) auf agiles Product Management.",
+      "techStack": ["Leadership", "Team Synergy", "Peak Performance", " Resilience"],
+      "type": "personal"
+    }
+  ]
+}

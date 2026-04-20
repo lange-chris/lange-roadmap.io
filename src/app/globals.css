@@ -3,11 +3,11 @@
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   
-  --color-background: #020617; /* Slate 950 */
+  --color-background: #020617;
   --color-foreground: hsl(0 0% 98%);
   
-  --color-blue-deep: #1e3a8a; /* Blue 900 */
-  --color-blue-vibrant: #3b82f6; /* Blue 500 */
+  --color-blue-deep: #1e3a8a;
+  --color-blue-vibrant: #3b82f6;
   
   --radius-bubble: 60% 40% 30% 70% / 60% 30% 70% 40%;
 }
@@ -19,7 +19,32 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
+    overflow: hidden; /* Prevent vertical scroll on body */
   }
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  width: 100vw;
+  height: 100vh;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.section {
+  min-width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .liquid-bg {
@@ -51,12 +76,10 @@
   animation: wobble 8s ease-in-out infinite;
 }
 
-.molecular-line {
-  stroke: rgba(59, 130, 246, 0.2);
-  stroke-width: 2;
-  stroke-dasharray: 5, 5;
-}
-
 .liquid-shadow {
   box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+.timeline-glow {
+  background: linear-gradient(to right, transparent, rgba(59, 130, 246, 0.1), transparent);
 }

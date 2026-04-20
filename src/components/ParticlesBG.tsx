@@ -16,10 +16,6 @@ export default function ParticlesBG() {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log("Particles loaded", container);
-  };
-
   const options: ISourceOptions = useMemo(
     () => ({
       background: {
@@ -28,38 +24,15 @@ export default function ParticlesBG() {
         },
       },
       fpsLimit: 120,
-      interactivity: {
-        events: {
-          onClick: {
-            enable: true,
-            mode: "push",
-          },
-          onHover: {
-            enable: true,
-            mode: "bubble",
-          },
-        },
-        modes: {
-          push: {
-            quantity: 4,
-          },
-          bubble: {
-            distance: 200,
-            duration: 2,
-            opacity: 0.8,
-            size: 4,
-          },
-        },
-      },
       particles: {
         color: {
           value: "#3b82f6",
         },
         links: {
           color: "#3b82f6",
-          distance: 150,
+          distance: 180,
           enable: true,
-          opacity: 0.15,
+          opacity: 0.1,
           width: 1,
         },
         move: {
@@ -69,23 +42,23 @@ export default function ParticlesBG() {
             default: "out",
           },
           random: false,
-          speed: 1,
+          speed: 0.8,
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 60,
+          value: 80,
         },
         opacity: {
-          value: 0.3,
+          value: 0.2,
         },
         shape: {
           type: "circle",
         },
         size: {
-          value: { min: 1, max: 3 },
+          value: { min: 1, max: 2 },
         },
       },
       detectRetina: true,
@@ -97,9 +70,8 @@ export default function ParticlesBG() {
     return (
       <Particles
         id="tsparticles"
-        particlesLoaded={particlesLoaded}
         options={options}
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="fixed inset-0 z-0 pointer-events-none"
       />
     );
   }
