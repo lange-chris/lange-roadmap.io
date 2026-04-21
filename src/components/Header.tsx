@@ -1,3 +1,9 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Cpu } from "lucide-react";
+import skillsData from "../data/skills.json";
+
 interface HeaderProps {
   locale: 'de' | 'en';
   onLocaleChange: (locale: 'de' | 'en') => void;
