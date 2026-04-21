@@ -27,6 +27,11 @@ export default function MolecularNode({
   range 
 }: MolecularNodeProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Staggered entrance based on horizontal scroll
   const scale = useTransform(scrollProgress, range, [0.6, 1]);
@@ -119,7 +124,10 @@ export default function MolecularNode({
           SKILL ORBIT SYSTEM 
           Atoms rotating around the primary career node
       */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <motion.div 
+        style={{ opacity }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
@@ -127,8 +135,8 @@ export default function MolecularNode({
         >
           {displaySkills.map((skill, index) => {
             const angle = (index / displaySkills.length) * (2 * Math.PI);
-            // Safe SSR radius calculation
-            const radius = typeof window !== 'undefined' && window.innerWidth < 768 ? 160 : 320;
+            // Safe SSR radius calculation (stable during hydration)
+            const radius = mounted && window.innerWidth < 768 ? 160 : 320;
             
             return (
               <motion.div
@@ -139,14 +147,18 @@ export default function MolecularNode({
                   position: 'absolute',
                   top: '50%',
                   left: '50%',
-                  x: Math.cos(angle) * radius,
-                  y: Math.sin(angle) * radius,
+                  x: Number((Math.cos(angle) * radius).toFixed(3)),
+                  y: Number((Math.sin(angle) * radius).toFixed(3)),
                 }}
                 className="w-16 h-16 md:w-24 md:h-24 glass-morphism rounded-full flex items-center justify-center p-2 text-center border-[#d4a373]/30 shadow-[0_0_20px_rgba(212, 163, 115, 0.2)]"
               >
-                <div className="text-[#2d2926]/80 font-black text-[8px] md:text-[10px] uppercase leading-none tracking-tighter">
+                <motion.div 
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  className="text-[#2d2926]/80 font-black text-[8px] md:text-[10px] uppercase leading-none tracking-tighter"
+                >
                   {skill}
-                </div>
+                </motion.div>
               </motion.div>
             );
           })}
