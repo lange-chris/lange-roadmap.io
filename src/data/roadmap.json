@@ -3,102 +3,192 @@
     {
       "id": "bootcamp",
       "year": "01/2026 – 06/2026",
-      "title": "AI Project Manager (Interdisziplinäre Spezialisierung)",
+      "title": {
+        "de": "AI Project Manager (Interdisziplinäre Spezialisierung)",
+        "en": "AI Project Manager (Interdisciplinary Specialization)"
+      },
       "organization": "neuefische GmbH",
-      "description": "Identifikation und Validierung von Machine Learning Opportunitäten; Strategie von Prototyping bis Skalierung in Cloud-Infrastrukturen (AWS/GCP). Aufbau von ML-Pipelines und MLOps-Workflows.",
+      "description": {
+        "de": "Identifikation und Validierung von Machine Learning Opportunitäten; Strategie von Prototyping bis Skalierung in Cloud-Infrastrukturen (AWS/GCP). Aufbau von ML-Pipelines und MLOps-Workflows.",
+        "en": "Identification and validation of Machine Learning opportunities; strategy from prototyping to scaling in cloud infrastructures (AWS/GCP). Building ML pipelines and MLOps workflows."
+      },
       "techStack": ["Python", "SQL", "MongoDB", "Cloud-Computing", "Docker", "Kubernetes"],
       "type": "education",
-      "achievements": ["AI Strategy", "MLOps", "KI-Compliance"]
+      "achievements": {
+        "de": ["AI Strategy", "MLOps", "KI-Compliance"],
+        "en": ["AI Strategy", "MLOps", "AI Compliance"]
+      }
     },
     {
       "id": "agile-cert",
       "year": "06/2025 – 07/2025",
-      "title": "Agile Scrum Product Owner & Scrum Master",
+      "title": {
+        "de": "Agile Scrum Product Owner & Scrum Master",
+        "en": "Agile Scrum Product Owner & Scrum Master"
+      },
       "organization": "EXIN, Hamburg",
-      "description": "Zertifizierter Product Owner & Scrum Master. Vertiefung agiler Frameworks zur Steigerung der Teameffizienz.",
+      "description": {
+        "de": "Zertifizierter Product Owner & Scrum Master. Vertiefung agiler Frameworks zur Steigerung der Teameffizienz.",
+        "en": "Certified Product Owner & Scrum Master. Deep dive into agile frameworks to increase team efficiency."
+      },
       "techStack": ["Scrum", "Kanban", "Leadership"],
       "type": "education",
-      "achievements": ["Certified PO", "Certified Scrum Master"]
+      "achievements": {
+        "de": ["Certified PO", "Certified Scrum Master"],
+        "en": ["Certified PO", "Certified Scrum Master"]
+      }
     },
     {
       "id": "xing-pm",
       "year": "03/2023 – 02/2025",
-      "title": "Product Manager",
+      "title": {
+        "de": "Product Manager",
+        "en": "Product Manager"
+      },
       "organization": "XING, Hamburg",
-      "description": "Full Lifecycle Product Ownership der XING Active Sourcing Tools (Umsatzvolumen 50 Mio. €). Launch von KI-Kampagnen mit 80% Steigerung der Response-Rate. Leitung eines internationalen Teams.",
+      "description": {
+        "de": "Full Lifecycle Product Ownership der XING Active Sourcing Tools (Umsatzvolumen 50 Mio. €). Launch von KI-Kampagnen mit 80% Steigerung der Response-Rate. Leitung eines internationalen Teams.",
+        "en": "Full Lifecycle Product Ownership of XING Active Sourcing Tools (€50M revenue volume). Launch of AI campaigns with an 80% response rate increase. Leadership of an international team."
+      },
       "techStack": ["Product Strategy", "AI Marketing", "Conversion Optimization"],
       "type": "professional",
-      "achievements": ["50 Mio. € Portfolio", "80% Response Rate Boost", "60% Conversion UX"]
+      "achievements": {
+        "de": ["50 Mio. € Portfolio", "80% Response Rate Boost", "60% Conversion UX"],
+        "en": ["€50M Portfolio", "80% Response Rate Boost", "60% Conversion UX"]
+      }
     },
     {
       "id": "xing-interim",
       "year": "09/2021 – 02/2023",
-      "title": "Recruiting Consultant & Interim Product Manager",
+      "title": {
+        "de": "Recruiting Consultant & Interim Product Manager",
+        "en": "Recruiting Consultant & Interim Product Manager"
+      },
       "organization": "XING, Hamburg",
-      "description": "Agile Transformation und Workflow-Automatisierung mit 20% Zeitersparnis pro Prozess. Reduzierung von Rework um 25%.",
+      "description": {
+        "de": "Agile Transformation und Workflow-Automatisierung mit 20% Zeitersparnis pro Prozess. Reduzierung von Rework um 25%.",
+        "en": "Agile transformation and workflow automation with 20% time savings per process. Reduction of rework by 25%."
+      },
       "techStack": ["Agile Transformation", "Workflow Automation", "Stakeholder Mgmt"],
       "type": "professional",
-      "achievements": ["20% Time Saving", "25% Rework Reduction"]
+      "achievements": {
+        "de": ["20% Time Saving", "25% Rework Reduction"],
+        "en": ["20% Time Saving", "25% Rework Reduction"]
+      }
     },
     {
       "id": "pluss-recruitment",
       "year": "09/2019 – 08/2021",
-      "title": "Recruitment Specialist",
+      "title": {
+        "de": "Recruitment Specialist",
+        "en": "Recruitment Specialist"
+      },
       "organization": "pluss Holding GmbH",
-      "description": "Beratung von 30 Standorten in Recruiting-Fragen. Analyse relevanter Metriken zur Optimierung der Einstellungsprozesse.",
+      "description": {
+        "de": "Beratung von 30 Standorten in Recruiting-Fragen. Analyse relevanter Metriken zur Optimierung der Einstellungsprozesse.",
+        "en": "Consulting 30 locations on recruiting matters. Analysis of relevant metrics to optimize hiring processes."
+      },
       "techStack": ["HR Metrics", "Process Optimization", "Consulting"],
       "type": "professional",
-      "achievements": ["30+ Locations Managed"]
+      "achievements": {
+        "de": ["30+ Locations Managed"],
+        "en": ["30+ Locations Managed"]
+      }
     },
     {
       "id": "career-team",
       "year": "02/2017 – 08/2019",
-      "title": "HR-Consultant",
+      "title": {
+        "de": "HR-Consultant",
+        "en": "HR-Consultant"
+      },
       "organization": "CareerTeam GmbH",
-      "description": "Personalberatung für digitale Fach- und Führungskräfte.",
+      "description": {
+        "de": "Personalberatung für digitale Fach- und Führungskräfte.",
+        "en": "Personnel consultancy for digital experts and executives."
+      },
       "techStack": ["Executive Search", "Digital Talent", "Networking"],
       "type": "professional",
-      "achievements": ["Digital Leadership Focus"]
+      "achievements": {
+        "de": ["Digital Leadership Focus"],
+        "en": ["Digital Leadership Focus"]
+      }
     },
     {
       "id": "coach-assistant",
       "year": "08/2016 – 01/2017",
-      "title": "Management Assistant & Wakeboard Coach",
+      "title": {
+        "de": "Management Assistant & Wakeboard Coach",
+        "en": "Management Assistant & Wakeboard Coach"
+      },
       "organization": "Seilbahn NB / SkiRixen USA",
-      "description": "Unterstützung des Managements und professionelles Coaching in den USA/Deutschland.",
+      "description": {
+        "de": "Unterstützung des Managements und professionelles Coaching in den USA/Deutschland.",
+        "en": "Management support and professional coaching in the USA/Germany."
+      },
       "techStack": ["Management", "Coaching", "International Experience"],
       "type": "professional",
-      "achievements": ["US Expansion Support"]
+      "achievements": {
+        "de": ["US Expansion Support"],
+        "en": ["US Expansion Support"]
+      }
     },
     {
       "id": "bachelor",
       "year": "2012 – 2016",
-      "title": "Bachelor of Arts – Business Administration",
+      "title": {
+        "de": "Bachelor of Arts – Business Administration",
+        "en": "Bachelor of Arts – Business Administration"
+      },
       "organization": "Fachhochschule Stralsund",
-      "description": "Schwerpunkte: Personalmanagement, International Business Management (Europameister im Drachenboot).",
+      "description": {
+        "de": "Schwerpunkte: Personalmanagement, International Business Management (Europameister im Drachenboot).",
+        "en": "Focus: Personnel Management, International Business Management (European Champion in Dragon Boat Racing)."
+      },
       "techStack": ["Business Admin", "HR Management", "International Business"],
       "type": "education",
-      "achievements": ["High Performance Athlete"]
+      "achievements": {
+        "de": ["High Performance Athlete"],
+        "en": ["High Performance Athlete"]
+      }
     },
     {
       "id": "insurance",
       "year": "2008 – 2011",
-      "title": "Kaufmann für Versicherungen und Finanzen",
+      "title": {
+        "de": "Kaufmann für Versicherungen und Finanzen",
+        "en": "Management Assistant for Insurance and Finance"
+      },
       "organization": "ERGO Group AG",
-      "description": "Duale Ausbildung mit Fokus auf Beratung und Finanzwesen.",
+      "description": {
+        "de": "Duale Ausbildung mit Fokus auf Beratung und Finanzwesen.",
+        "en": "Vocational training with a focus on consulting and finance."
+      },
       "techStack": ["Finance", "Insurance", "Sales"],
       "type": "education",
-      "achievements": ["Professional Certification"]
+      "achievements": {
+        "de": ["Professional Certification"],
+        "en": ["Professional Certification"]
+      }
     },
     {
       "id": "military",
       "year": "2007 – 2008",
-      "title": "Grundwehrdienst",
+      "title": {
+        "de": "Grundwehrdienst",
+        "en": "Basic Military Service"
+      },
       "organization": "Bundeswehr",
-      "description": "Pflichtdienst mit Fokus auf Disziplin und Teamführung.",
+      "description": {
+        "de": "Pflichtdienst mit Fokus auf Disziplin und Teamführung.",
+        "en": "Compulsory service with a focus on discipline and team leadership."
+      },
       "techStack": ["Teamwork", "Security", "Resilience"],
       "type": "professional",
-      "achievements": ["Basic Military Training"]
+      "achievements": {
+        "de": ["Basic Military Training"],
+        "en": ["Basic Military Training"]
+      }
     }
   ]
 }

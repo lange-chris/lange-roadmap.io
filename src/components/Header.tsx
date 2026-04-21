@@ -1,10 +1,9 @@
-"use client";
+interface HeaderProps {
+  locale: 'de' | 'en';
+  onLocaleChange: (locale: 'de' | 'en') => void;
+}
 
-import { motion } from "framer-motion";
-import { Globe, Cpu } from "lucide-react";
-import skillsData from "../data/skills.json";
-
-export default function Header() {
+export default function Header({ locale, onLocaleChange }: HeaderProps) {
   return (
     <motion.header 
       initial={{ y: -100 }}
@@ -22,18 +21,22 @@ export default function Header() {
       </div>
 
       <div className="flex items-center gap-6 pointer-events-auto">
-        <div className="flex items-center gap-4 bg-black/5 border border-black/10 rounded-full px-4 py-2 backdrop-blur-md">
+        <div className="flex items-center gap-4 bg-black/5 border border-black/10 rounded-full px-5 py-2.5 backdrop-blur-md">
           {skillsData.languages.map((lang) => (
-            <div key={lang.code} className="group relative flex items-center gap-2 cursor-help">
-              <span className="text-black/40 group-hover:text-black transition-colors font-mono text-[10px] tracking-widest">{lang.code}</span>
-              <div className="absolute top-full mt-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-[#d4a373] text-white text-[10px] px-2 py-1 rounded shadow-xl uppercase font-bold tracking-widest">
+            <button 
+              key={lang.code}
+              onClick={() => onLocaleChange(lang.code as 'de' | 'en')}
+              className="group relative flex items-center gap-2 cursor-pointer outline-none"
+            >
+              <span className={`transition-colors font-mono text-[10px] tracking-widest font-bold ${locale === lang.code ? 'text-[#d4a373]' : 'text-black/30 hover:text-black/60'}`}>
+                {lang.code.toUpperCase()}
+              </span>
+              <div className="absolute top-full mt-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-[#d4a373] text-white text-[10px] px-2 py-1 rounded shadow-xl uppercase font-bold tracking-widest pointer-events-none">
                 {lang.name}: {lang.level}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-[#d4a373]" />
               </div>
-            </div>
+            </button>
           ))}
-          <div className="w-px h-3 bg-black/20 mx-1" />
-          <Globe className="w-4 h-4 text-black/20" />
         </div>
       </div>
     </motion.header>
