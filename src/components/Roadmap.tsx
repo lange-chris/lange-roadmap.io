@@ -45,7 +45,7 @@ export default function Roadmap() {
   const userEmail = process.env.NEXT_PUBLIC_USER_EMAIL || "chris@lange.com";
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#020617]">
+    <div className="relative h-screen w-screen overflow-hidden bg-[#fdfbf7]">
       <Header />
       <ParticlesBG />
 
@@ -53,12 +53,12 @@ export default function Roadmap() {
           Progress Indicator (Liquid Bar) 
           Helps users navigate the 10-phase sequence
       */}
-      <div className="fixed bottom-12 left-1/2 -translate-x-1/2 w-64 h-1 bg-white/5 rounded-full z-50 overflow-hidden">
+      <div className="fixed bottom-12 left-1/2 -translate-x-1/2 w-64 h-1 bg-black/5 rounded-full z-50 overflow-hidden">
         <motion.div 
           style={{ width: useTransform(smoothProgress, [0, 1], ["0%", "100%"]) }}
-          className="h-full bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+          className="h-full bg-[#d4a373] shadow-[0_0_20px_rgba(212, 163, 115, 0.5)]"
         />
-        <div className="flex justify-between mt-2 px-1 text-[8px] font-mono text-white/20 uppercase tracking-widest">
+        <div className="flex justify-between mt-2 px-1 text-[8px] font-mono text-black/20 uppercase tracking-widest">
            <span>Start</span>
            <span>Christoph Lange Journey</span>
            <span>End</span>
@@ -77,20 +77,20 @@ export default function Roadmap() {
             whileInView={{ opacity: 1, x: 0 }}
             className="max-w-4xl px-12 text-center md:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-8 tracking-widest uppercase">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4a373]/10 border border-[#d4a373]/20 text-xs font-semibold text-[#d4a373] mb-8 tracking-widest uppercase">
               <Sparkles className="w-4 h-4" />
               <span>Full Portfolio // Full Lifecycle Engineering</span>
             </div>
-            <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-none">
+            <h1 className="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-none text-[#2d2926]">
               Vision in <br />
-              <span className="text-blue-500">Atomic Detail.</span>
+              <span className="text-[#d4a373]">Atomic Detail.</span>
             </h1>
-            <p className="text-xl md:text-3xl text-white/40 max-w-2xl leading-relaxed mb-12 font-light">
+            <p className="text-xl md:text-3xl text-black/40 max-w-2xl leading-relaxed mb-12 font-light">
               Hier findest du alle Stationen meiner Karriere – von der Bundeswehr bis zu AI Project Management. 
               Navigiere horizontal durch mein molekulares Ökosystem.
             </p>
-            <div className="flex items-center gap-4 text-blue-400 font-mono text-sm">
-              <div className="w-12 h-[1px] bg-blue-500" /> SCROLL HORIZONTALLY TO BEGIN
+            <div className="flex items-center gap-4 text-[#d4a373] font-mono text-sm">
+              <div className="w-12 h-[1px] bg-[#d4a373]" /> SCROLL HORIZONTALLY TO BEGIN
             </div>
           </motion.div>
         </section>
