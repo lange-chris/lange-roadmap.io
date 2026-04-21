@@ -136,7 +136,7 @@ export default function MolecularNode({
           {displaySkills.map((skill, index) => {
             const angle = (index / displaySkills.length) * (2 * Math.PI);
             // Safe SSR radius calculation (stable during hydration)
-            const radius = mounted && window.innerWidth < 768 ? 160 : 320;
+            const radius = mounted && window.innerWidth < 768 ? 160 : 360;
             
             return (
               <motion.div
@@ -150,12 +150,12 @@ export default function MolecularNode({
                   x: Number((Math.cos(angle) * radius).toFixed(3)),
                   y: Number((Math.sin(angle) * radius).toFixed(3)),
                 }}
-                className="w-16 h-16 md:w-24 md:h-24 glass-morphism rounded-full flex items-center justify-center p-2 text-center border-[#d4a373]/30 shadow-[0_0_20px_rgba(212, 163, 115, 0.2)]"
+                className="w-20 h-20 md:w-28 md:h-28 glass-morphism rounded-full flex items-center justify-center p-2 text-center border-[#d4a373]/30 shadow-[0_0_20px_rgba(212, 163, 115, 0.2)]"
               >
                 <motion.div 
                   animate={{ rotate: -360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  className="text-[#2d2926]/80 font-black text-[8px] md:text-[10px] uppercase leading-none tracking-tighter"
+                  className="text-[#2d2926] font-black text-[10px] md:text-[14px] uppercase leading-none tracking-tight"
                 >
                   {skill}
                 </motion.div>
