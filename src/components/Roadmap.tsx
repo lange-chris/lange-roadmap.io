@@ -147,7 +147,7 @@ export default function Roadmap() {
 
           return (
             <section key={m.id} className="section bg-transparent px-8">
-              <div className="grid lg:grid-cols-2 gap-8 items-center max-w-[1400px] w-full">
+              <div className="grid lg:grid-cols-2 gap-6 items-center max-w-[1400px] w-full">
                 {/* The Atom with Skill Orbitals */}
                 <div className="flex justify-center scale-90 md:scale-100">
                   <MolecularNode 
@@ -168,18 +168,18 @@ export default function Roadmap() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="glass-morphism rounded-[3rem] p-8 md:p-16 border-black/5 relative overflow-hidden group min-h-[400px] md:min-h-[500px]"
+                  className="glass-morphism rounded-[3rem] p-6 md:p-10 border-black/5 relative overflow-hidden group min-h-[350px] md:min-h-[450px]"
                 >
                   <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4a373]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
                   
-                  <div className="flex items-center gap-4 mb-8">
+                  <div className="flex items-center gap-4 mb-6">
                     <div className="h-px w-12 bg-[#d4a373]/30" />
                     <h4 className="text-[#d4a373] font-mono text-sm font-black uppercase tracking-[0.2em]">{m.year}</h4>
                   </div>
 
-                  <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter uppercase text-[#2d2926]">{m.title[locale]}</h2>
+                  <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight tracking-tighter uppercase text-[#2d2926]">{m.title[locale]}</h2>
                   
-                  <div className="text-lg md:text-2xl text-black/50 leading-relaxed font-light mb-12">
+                  <div className="text-md md:text-xl text-black/50 leading-relaxed font-light mb-8">
                      {m.description[locale]}
                   </div>
                   

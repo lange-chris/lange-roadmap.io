@@ -43,7 +43,7 @@ export default function MolecularNode({
 
   return (
     <div 
-      className="relative z-20 flex flex-col items-center justify-center p-32" // Added padding for orbit room
+      className="relative z-20 flex flex-col items-center justify-center p-12" // Compacted padding
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -70,7 +70,7 @@ export default function MolecularNode({
           boxShadow: "0 0 100px rgba(212, 163, 115, 0.4)",
           transition: { duration: 0.5 }
         }}
-        className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex flex-col items-center justify-center glass-morphism border-[#2d2926]/10 relative cursor-pointer overflow-hidden p-8 text-center"
+        className="w-[280px] h-[280px] md:w-[350px] md:h-[350px] flex flex-col items-center justify-center glass-morphism border-[#2d2926]/10 relative cursor-pointer overflow-hidden p-8 text-center"
       >
         {/* Achievement Cloud: Pulsing hard facts inside */}
         <div className="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-none">
@@ -131,12 +131,12 @@ export default function MolecularNode({
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          className="w-[450px] h-[450px] md:w-[650px] md:h-[650px] relative"
+          className="w-[400px] h-[400px] md:w-[520px] md:h-[520px] relative"
         >
           {displaySkills.map((skill, index) => {
             const angle = (index / displaySkills.length) * (2 * Math.PI);
             // Safe SSR radius calculation (stable during hydration)
-            const radius = mounted && window.innerWidth < 768 ? 160 : 360;
+            const radius = mounted && window.innerWidth < 768 ? 140 : 260;
             
             return (
               <motion.div
