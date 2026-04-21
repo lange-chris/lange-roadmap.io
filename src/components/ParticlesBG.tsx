@@ -32,7 +32,7 @@ export default function ParticlesBG() {
           color: "#c2b280",
           distance: 180,
           enable: true,
-          opacity: 0.1,
+          opacity: 0.25,
           width: 1,
         },
         move: {
@@ -42,23 +42,23 @@ export default function ParticlesBG() {
             default: "out",
           },
           random: false,
-          speed: 0.8,
+          speed: 1.2,
           straight: false,
         },
         number: {
           density: {
             enable: true,
           },
-          value: 80,
+          value: 120,
         },
         opacity: {
-          value: 0.2,
+          value: 0.4,
         },
         shape: {
           type: "circle",
         },
         size: {
-          value: { min: 1, max: 2 },
+          value: { min: 1, max: 3 },
         },
       },
       detectRetina: true,
