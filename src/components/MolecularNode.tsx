@@ -163,7 +163,7 @@ export default function MolecularNode({
             );
           })}
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }
