@@ -125,27 +125,27 @@ export default function Roadmap() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="glass-morphism rounded-[3rem] p-8 md:p-16 border-white/5 relative overflow-hidden group min-h-[400px] md:min-h-[500px]"
+                  className="glass-morphism rounded-[3rem] p-8 md:p-16 border-black/5 relative overflow-hidden group min-h-[400px] md:min-h-[500px]"
                 >
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4a373]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
                   
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="h-px w-12 bg-blue-500/30" />
-                    <h4 className="text-blue-400 font-mono text-sm font-black uppercase tracking-[0.2em]">{milestone.year}</h4>
+                    <div className="h-px w-12 bg-[#d4a373]/30" />
+                    <h4 className="text-[#d4a373] font-mono text-sm font-black uppercase tracking-[0.2em]">{milestone.year}</h4>
                   </div>
 
-                  <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter uppercase">{milestone.title}</h2>
+                  <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight tracking-tighter uppercase text-[#2d2926]">{milestone.title}</h2>
                   
-                  <div className="text-lg md:text-2xl text-white/50 leading-relaxed font-light mb-12">
+                  <div className="text-lg md:text-2xl text-black/50 leading-relaxed font-light mb-12">
                      {milestone.description}
                   </div>
                   
                   {/* Highlights Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {milestone.achievements.map(ach => (
-                      <div key={ach} className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                        <span className="text-xs md:text-sm text-white/70 font-bold tracking-tight">{ach}</span>
+                      <div key={ach} className="flex items-center gap-3 p-3 rounded-2xl bg-black/5 border border-black/5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#d4a373]" />
+                        <span className="text-xs md:text-sm text-black/70 font-bold tracking-tight">{ach}</span>
                       </div>
                     ))}
                   </div>
@@ -159,33 +159,33 @@ export default function Roadmap() {
         <section className="section bg-transparent px-12">
           <div className="max-w-6xl w-full grid md:grid-cols-2 gap-24 items-center">
              <div>
-               <h2 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none">Initiate <br /><span className="text-blue-500">Scale.</span></h2>
-               <p className="text-xl text-white/40 font-light mb-12 max-w-md">
+               <h2 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter uppercase leading-none text-[#2d2926]">Initiate <br /><span className="text-[#d4a373]">Scale.</span></h2>
+               <p className="text-xl text-black/40 font-light mb-12 max-w-md">
                  Der Transfer von High-Performance aus dem Leistungssport in das Product Management schafft unschlagbare Ergebnisse.
                </p>
                
                <div className="space-y-6">
-                  <a href={`mailto:${userEmail}`} className="flex items-center gap-6 group p-4 rounded-3xl hover:bg-white/5 transition-all w-fit pointer-events-auto">
-                    <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-black transition-all">
+                  <a href={`mailto:${userEmail}`} className="flex items-center gap-6 group p-4 rounded-3xl hover:bg-black/5 transition-all w-fit pointer-events-auto">
+                    <div className="w-16 h-16 rounded-full bg-[#d4a373]/10 border border-[#d4a373]/20 flex items-center justify-center group-hover:bg-[#d4a373] group-hover:text-white transition-all">
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-white/30 uppercase tracking-[0.3em] font-black mb-1">Send Pulse</div>
-                      <div className="text-xl text-white/80 font-bold tracking-tight">{userEmail}</div>
+                      <div className="text-[10px] text-black/30 uppercase tracking-[0.3em] font-black mb-1">Send Pulse</div>
+                      <div className="text-xl text-black/80 font-bold tracking-tight">{userEmail}</div>
                     </div>
                   </a>
                </div>
              </div>
 
-             <div className="bg-blue-500/5 rounded-[4rem] p-12 border border-blue-500/10 relative overflow-hidden backdrop-blur-xl">
-                <Code2 className="w-16 h-16 text-blue-500 mb-8" />
-                <p className="text-sm font-mono text-blue-200/40 leading-relaxed mb-12">
+             <div className="bg-[#d4a373]/5 rounded-[4rem] p-12 border border-[#d4a373]/10 relative overflow-hidden backdrop-blur-xl">
+                <Code2 className="w-16 h-16 text-[#d4a373] mb-8" />
+                <p className="text-sm font-mono text-[#d4a373]/40 leading-relaxed mb-12">
                    // CV Integrity: Total Synchronization <br />
                    // Identity: Christoph Lange <br />
                    // Build: Premium Liquid Ecosystem 
                 </p>
                 <div className="flex gap-4">
-                  <button className="flex-1 py-6 rounded-3xl bg-blue-600 text-white font-black text-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-3 shadow-[0_0_50px_rgba(59,130,246,0.3)] uppercase tracking-tighter">
+                  <button className="flex-1 py-6 rounded-3xl bg-[#d4a373] text-white font-black text-lg hover:bg-[#c2b280] transition-all flex items-center justify-center gap-3 shadow-[0_0_50px_rgba(212, 163, 115, 0.3)] uppercase tracking-tighter">
                     Contact Chris
                     <ChevronRight className="w-5 h-5" />
                   </button>

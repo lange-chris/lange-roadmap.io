@@ -62,10 +62,10 @@ export default function MolecularNode({
         }}
         whileHover={{
           scale: 1.05,
-          boxShadow: "0 0 100px rgba(59, 130, 246, 0.4)",
+          boxShadow: "0 0 100px rgba(212, 163, 115, 0.4)",
           transition: { duration: 0.5 }
         }}
-        className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex flex-col items-center justify-center glass-morphism border-white/20 relative cursor-pointer overflow-hidden p-8 text-center"
+        className="w-[300px] h-[300px] md:w-[450px] md:h-[450px] flex flex-col items-center justify-center glass-morphism border-[#2d2926]/10 relative cursor-pointer overflow-hidden p-8 text-center"
       >
         {/* Achievement Cloud: Pulsing hard facts inside */}
         <div className="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-none">
@@ -81,7 +81,7 @@ export default function MolecularNode({
                 delay: i * 1.5,
                 repeat: Infinity,
               }}
-              className="text-[10px] md:text-[14px] font-black text-blue-400 absolute uppercase tracking-[0.3em] whitespace-nowrap opacity-20"
+              className="text-[10px] md:text-[14px] font-black text-[#d4a373] absolute uppercase tracking-[0.3em] whitespace-nowrap opacity-20"
               style={{
                 top: `${20 + i * 20}%`,
                 left: i % 2 === 0 ? '10%' : 'auto',
@@ -97,22 +97,22 @@ export default function MolecularNode({
         <div className="relative z-10">
           <motion.div 
             animate={isHovered ? { rotate: [0, -10, 10, 0] } : {}}
-            className="text-blue-500 mb-6 scale-[2] md:scale-[3] opacity-60"
+            className="text-[#d4a373] mb-6 scale-[2] md:scale-[3] opacity-60"
           >
             {icon}
           </motion.div>
           
-          <div className="text-white/40 font-mono text-xs md:text-sm mb-2 uppercase tracking-[0.3em] font-black">{year}</div>
-          <h3 className="text-white font-black text-lg md:text-3xl leading-tight px-12 mb-4 tracking-tighter uppercase whitespace-normal">
+          <div className="text-[#2d2926]/40 font-mono text-xs md:text-sm mb-2 uppercase tracking-[0.3em] font-black">{year}</div>
+          <h3 className="text-[#2d2926] font-black text-lg md:text-3xl leading-tight px-12 mb-4 tracking-tighter uppercase whitespace-normal">
             {title}
           </h3>
-          <p className="text-blue-400/80 font-bold text-xs md:text-lg tracking-wide bg-blue-500/10 px-4 py-1 rounded-full border border-blue-500/20">
+          <p className="text-[#d4a373]/80 font-bold text-xs md:text-lg tracking-wide bg-[#d4a373]/10 px-4 py-1 rounded-full border border-[#d4a373]/20">
             {organization}
           </p>
         </div>
 
         {/* Interactive Overlay Glow */}
-        <div className="absolute inset-0 bg-radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%) pointer-events-none" />
+        <div className="absolute inset-0 bg-radial-gradient(circle at center, rgba(212, 163, 115, 0.1) 0%, transparent 70%) pointer-events-none" />
       </motion.div>
 
       {/* 
@@ -142,9 +142,9 @@ export default function MolecularNode({
                   x: Math.cos(angle) * radius,
                   y: Math.sin(angle) * radius,
                 }}
-                className="w-16 h-16 md:w-24 md:h-24 glass-morphism rounded-full flex items-center justify-center p-2 text-center border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+                className="w-16 h-16 md:w-24 md:h-24 glass-morphism rounded-full flex items-center justify-center p-2 text-center border-[#d4a373]/30 shadow-[0_0_20px_rgba(212, 163, 115, 0.2)]"
               >
-                <div className="text-white/80 font-black text-[8px] md:text-[10px] uppercase leading-none tracking-tighter">
+                <div className="text-[#2d2926]/80 font-black text-[8px] md:text-[10px] uppercase leading-none tracking-tighter">
                   {skill}
                 </div>
               </motion.div>

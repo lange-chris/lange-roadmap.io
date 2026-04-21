@@ -26,10 +26,10 @@ export default function ParticlesBG() {
       fpsLimit: 120,
       particles: {
         color: {
-          value: "#3b82f6",
+          value: "#d4a373",
         },
         links: {
-          color: "#3b82f6",
+          color: "#c2b280",
           distance: 180,
           enable: true,
           opacity: 0.1,
