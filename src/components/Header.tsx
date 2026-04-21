@@ -31,10 +31,10 @@ export default function Header({ locale, onLocaleChange }: HeaderProps) {
           {skillsData.languages.map((lang) => (
             <button 
               key={lang.code}
-              onClick={() => onLocaleChange(lang.code as 'de' | 'en')}
+              onClick={() => onLocaleChange(lang.code.toLowerCase() as 'de' | 'en')}
               className="group relative flex items-center gap-2 cursor-pointer outline-none"
             >
-              <span className={`transition-colors font-mono text-[10px] tracking-widest font-bold ${locale === lang.code ? 'text-[#d4a373]' : 'text-black/30 hover:text-black/60'}`}>
+              <span className={`transition-colors font-mono text-[10px] tracking-widest font-bold ${locale === lang.code.toLowerCase() ? 'text-[#d4a373]' : 'text-black/30 hover:text-black/60'}`}>
                 {lang.code.toUpperCase()}
               </span>
               <div className="absolute top-full mt-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-[#d4a373] text-white text-[10px] px-2 py-1 rounded shadow-xl uppercase font-bold tracking-widest pointer-events-none">
