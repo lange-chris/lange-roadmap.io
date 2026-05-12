@@ -56,14 +56,14 @@ export default function Home() {
         </a>
       </div>
 
-      {index > 0 && <FocalPoint eraId={currentEra?.id || "01"} />}
+      {index > 0 && currentEra && <FocalPoint era={currentEra} />}
 
       <div className="page-transition-container">
         <AnimatePresence initial={false} custom={direction} mode="wait">
           {index === 0 ? (
-            <LandingSlide 
-              key="landing" 
-              onStart={() => paginate(1)} 
+            <LandingSlide
+              key="landing"
+              onStart={() => paginate(1)}
               onJump={(i) => { setDirection(1); setIndex(i); }}
             />
           ) : (
@@ -78,27 +78,16 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Controls (Minimal Indicators Only) */}
-      <div className="fixed bottom-8 left-8 right-8 z-40 flex justify-between items-end">
-        <div className="flex gap-2 mb-2">
-          {[...Array(totalSlides)].map((_, i) => (
-            <div 
-              key={i} 
-              className={`w-1 h-1 rounded-full transition-all ${i === index ? "bg-foreground scale-125" : "bg-gray-300"}`}
-            />
-          ))}
-        </div>
-
-        <div className="text-right">
-          <p className="text-[10px] tracking-[0.4em] uppercase opacity-40 mb-2">
-            {cvData.slogan}
-          </p>
-          <div className="flex gap-4 justify-end text-[10px] tracking-widest font-mono">
-            <span>{index === 0 ? "HOME" : `ERA 0${index}`} / 03</span>
-            <span className="opacity-40">DE | EN</span>
-          </div>
-        </div>
+      {/* Dots - centered bottom */}
+      <div className="fixed bottom-8 left-0 right-0 z-40 flex justify-center gap-2">
+        {[...Array(totalSlides)].map((_, i) => (
+          <div
+            key={i}
+            className={`w-1 h-1 rounded-full transition-all ${i === index ? "bg-foreground scale-125" : "bg-gray-300"}`}
+          />
+        ))}
       </div>
+
     </main>
   );
 }

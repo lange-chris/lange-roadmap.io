@@ -1,28 +1,224 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Era } from "@/data/cvData";
 
 interface FocalPointProps {
-  eraId: string;
+  era: Era;
 }
 
-export default function FocalPoint({ eraId }: FocalPointProps) {
+const RADIUS = 200;
+const CENTER_R = 40;   // radius of the central circle (w-20 / 2)
+const NODE_R = 9;      // radius of each node circle
+
+function getAngle(i: number, total: number) {
+  return ((360 / total) * i - 90) * (Math.PI / 180);
+}
+
+export default function FocalPoint({ era }: FocalPointProps) {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [vp, setVp] = useState({ w: 1440, h: 900 });
+  const nodes = era.milestones;
+
+  useEffect(() => {
+    const update = () => setVp({ w: window.innerWidth, h: window.innerHeight });
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+    setSelected(null);
+  }, [era.id]);
+
+  const cx = vp.w / 2;
+  const cy = vp.h / 2;
+
   return (
-    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
-      <motion.div
-        key={eraId}
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative w-24 h-24 flex items-center justify-center"
+    <>
+      {/* Description panel – top right */}
+      <AnimatePresence mode="wait">
+        {!open ? (
+          <motion.div
+            key="era-narrative"
+            className="fixed top-20 right-8 z-30 max-w-[280px] text-right"
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 16 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <p className="text-[20px] leading-relaxed text-foreground/50 font-light">
+              {era.narrative}
+            </p>
+          </motion.div>
+        ) : selected !== null ? (
+          <motion.div
+            key={`node-${selected}`}
+            className="fixed top-20 right-8 z-30 max-w-[280px] text-right"
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 16 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            <p className="text-[9px] tracking-[0.3em] uppercase text-foreground/30 mb-2">
+              {nodes[selected].title}
+            </p>
+            <p className="text-[20px] leading-relaxed text-foreground/60 font-light">
+              {nodes[selected].description}
+            </p>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      {/* Full-screen SVG — lines + node circles */}
+      <svg
+        className="fixed inset-0 z-10 pointer-events-none"
+        style={{ width: vp.w, height: vp.h }}
+        viewBox={`0 0 ${vp.w} ${vp.h}`}
       >
-        <div className="absolute inset-0 border border-foreground/5 rounded-full" />
-        <motion.div 
-          animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="w-2 h-2 bg-foreground rounded-full"
-        />
+        <AnimatePresence>
+          {open && nodes.map((_, i) => {
+            const a = getAngle(i, nodes.length);
+            const x1 = cx + Math.cos(a) * CENTER_R;
+            const y1 = cy + Math.sin(a) * CENTER_R;
+            const x2 = cx + Math.cos(a) * (RADIUS - NODE_R);
+            const y2 = cy + Math.sin(a) * (RADIUS - NODE_R);
+            return (
+              <motion.path
+                key={`line-${i}`}
+                d={`M ${x1} ${y1} L ${x2} ${y2}`}
+                stroke="rgba(224,224,224,0.22)"
+                strokeWidth="0.7"
+                fill="none"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                exit={{ pathLength: 0, opacity: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+              />
+            );
+          })}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {open && nodes.map((_, i) => {
+            const a = getAngle(i, nodes.length);
+            const nx = cx + Math.cos(a) * RADIUS;
+            const ny = cy + Math.sin(a) * RADIUS;
+            const isSelected = selected === i;
+            return (
+              <motion.g key={`node-${i}`}>
+                <motion.circle
+                  cx={nx} cy={ny} r={NODE_R}
+                  fill="none"
+                  stroke={isSelected ? "rgba(0,229,255,0.6)" : "rgba(224,224,224,0.25)"}
+                  strokeWidth="1"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  style={{ transformOrigin: `${nx}px ${ny}px` }}
+                  transition={{ duration: 0.35, delay: i * 0.1 + 0.05 }}
+                />
+                <motion.circle
+                  cx={nx} cy={ny} r={2.5}
+                  fill={isSelected ? "#00E5FF" : "rgba(224,224,224,0.4)"}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  style={{ transformOrigin: `${nx}px ${ny}px` }}
+                  transition={{ duration: 0.35, delay: i * 0.1 + 0.08 }}
+                />
+              </motion.g>
+            );
+          })}
+        </AnimatePresence>
+      </svg>
+
+      {/* Text labels — HTML, positioned away from center */}
+      <AnimatePresence>
+        {open && nodes.map((node, i) => {
+          const a = getAngle(i, nodes.length);
+          const nx = cx + Math.cos(a) * RADIUS;
+          const ny = cy + Math.sin(a) * RADIUS;
+          const isSelected = selected === i;
+
+          const gap = NODE_R + 10;
+          const tx = nx + Math.cos(a) * gap;
+          const ty = ny + Math.sin(a) * gap;
+
+          const cosA = Math.cos(a);
+          const sinA = Math.sin(a);
+          const alignX = cosA > 0.3 ? "0%" : cosA < -0.3 ? "-100%" : "-50%";
+          const alignY = sinA > 0.3 ? "0%" : sinA < -0.3 ? "-100%" : "-50%";
+          const textAlign = cosA > 0.3 ? "left" : cosA < -0.3 ? "right" : "center";
+
+          return (
+            <motion.div
+              key={`label-${i}`}
+              className="fixed z-20 cursor-pointer"
+              style={{
+                left: tx,
+                top: ty,
+                transform: `translate(${alignX}, ${alignY})`,
+                width: 160,
+                pointerEvents: "auto",
+                textAlign,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.1 + 0.1 }}
+              onClick={() => setSelected((prev) => (prev === i ? null : i))}
+            >
+              <p
+                className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200"
+                style={{ color: isSelected ? "#00E5FF" : "rgba(224,224,224,0.65)" }}
+              >
+                {node.title}
+              </p>
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
+
+      {/* Central circle — clickable HTML */}
+      <motion.div
+        className="fixed z-20 cursor-pointer"
+        style={{
+          left: cx,
+          top: cy,
+          transform: "translate(-50%, -50%)",
+          pointerEvents: "auto",
+        }}
+        onClick={() => { setOpen((v) => !v); setSelected(null); }}
+      >
+        <motion.div
+          animate={{ scale: open ? 1.45 : 1 }}
+          transition={{ duration: 0.45, ease: "easeInOut" }}
+          className="relative w-20 h-20 flex items-center justify-center"
+        >
+          <motion.div
+            animate={{ opacity: open ? 0.25 : 0.07 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 border border-foreground rounded-full"
+          />
+          <motion.div
+            animate={
+              open
+                ? { scale: 1.6, opacity: 0.75 }
+                : { scale: [1, 1.15, 1], opacity: [0.15, 0.3, 0.15] }
+            }
+            transition={
+              open
+                ? { duration: 0.3 }
+                : { duration: 4, repeat: Infinity, ease: "easeInOut" }
+            }
+            className="w-2 h-2 bg-foreground rounded-full"
+          />
+        </motion.div>
       </motion.div>
-    </div>
+    </>
   );
 }

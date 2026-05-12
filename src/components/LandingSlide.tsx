@@ -32,40 +32,41 @@ export default function LandingSlide({ onStart, onJump }: LandingSlideProps) {
       {/* Headline & Description */}
       <div className="mb-16">
         <h2 className="text-sm md:text-lg tracking-[0.3em] uppercase mb-4 opacity-80">
-          UNDERSTAND IT. THEN BUILD IT.
+          EMPOWER TEAMS. BUILD AI
         </h2>
-        <p className="text-[10px] md:text-[11px] tracking-[0.1em] opacity-40 uppercase">
-          18 Years. From HR-Consulting to AI-driven Product Strategy.
+        <p className="text-xs md:text-sm tracking-[0.08em] opacity-60 uppercase">
+          18 years of growth – from HR-Consulting to leading cross-functional teams and shaping AI-driven product strategy
         </p>
       </div>
 
       {/* Centered Eras Preview - Jumps to content */}
       <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center justify-center mb-16">
         {cvData.eras.map((era, i) => (
-          <div 
+          <div
             key={era.id}
             onClick={() => onJump(i + 1)}
-            className="cursor-pointer group flex flex-col items-center"
+            className="cursor-pointer group flex flex-col items-center px-8 py-5 transition-all duration-300"
           >
-            <p className="text-[9px] opacity-20 mb-2 font-mono">{era.id}</p>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] group-hover:opacity-100 opacity-60 transition-opacity mb-1">
+            <h3 className="text-[18px] font-bold uppercase tracking-[0.2em] group-hover:opacity-100 opacity-60 transition-opacity mb-1">
               {era.title}
             </h3>
-            <p className="text-[9px] opacity-30 font-mono tracking-tighter">
+            <p className="text-[14px] opacity-50 font-mono tracking-tighter text-center">
               {era.years}
             </p>
           </div>
         ))}
       </div>
 
-      {/* Browse Chronologically Link */}
-      <button
-        onClick={onStart}
-        className="group flex items-center gap-2 text-[9px] md:text-[10px] tracking-[0.4em] uppercase hover:opacity-100 opacity-40 transition-opacity"
-      >
-        Browse Chronologically
-        <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-      </button>
+      {/* Browse Chronologically - bottom */}
+      <div className="absolute bottom-16 left-0 right-0 flex justify-center">
+        <button
+          onClick={onStart}
+          className="cta-glow group flex items-center gap-2 text-[11px] md:text-xs tracking-[0.4em] uppercase"
+        >
+          Browse Chronologically
+          <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+        </button>
+      </div>
     </motion.div>
   );
 }

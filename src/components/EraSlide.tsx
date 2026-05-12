@@ -66,11 +66,6 @@ export default function EraSlide({ era, direction, onNext, onPrev }: EraSlidePro
           </div>
         </div>
         
-        <div className="max-w-[30vw] text-right mt-6">
-          <p className="text-sm leading-relaxed text-foreground/60 italic font-light">
-            "{era.narrative}"
-          </p>
-        </div>
       </div>
 
       {/* Middle Section */}
@@ -86,7 +81,7 @@ export default function EraSlide({ era, direction, onNext, onPrev }: EraSlidePro
               <div key={i} className="relative pl-6">
                 <div className="absolute left-[-2px] top-2 w-[4px] h-[4px] bg-foreground/20 rounded-full" />
                 <p className="text-xs font-light text-foreground/80 leading-relaxed uppercase tracking-wider">
-                  {m}
+                  {m.title}
                 </p>
               </div>
             ))}

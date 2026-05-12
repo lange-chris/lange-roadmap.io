@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #F0EDE8;
-  --color-foreground: #1A1A1A;
-  --color-grid-line: #D1CDC7;
+  --color-background: #101820;
+  --color-foreground: #E0E0E0;
+  --color-grid-line: #ffffff;
+  --color-accent: #00E5FF;
 }
 
 :root {
-  --background: #F0EDE8;
-  --foreground: #1A1A1A;
-  --grid-line: #D1CDC7;
+  --background: #101820;
+  --foreground: #E0E0E0;
+  --grid-line: #ffffff;
+  --accent: #00E5FF;
 }
 
 body {
@@ -29,7 +31,7 @@ body::after {
   width: 100%;
   height: 100%;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.03;
+  opacity: 0.05;
   pointer-events: none;
   z-index: 999;
 }
@@ -40,24 +42,22 @@ body::after {
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* 4 main columns to match the 4 eras */
-  background-image: 
+  background-image:
     linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
   background-size: 25vw 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.3;
+  opacity: 0.06;
 }
 
 .grid-background::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* Horizontal lines */
-  background-image: 
+  background-image:
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 100vw 10vh;
-  opacity: 0.1;
+  opacity: 0.4;
 }
 
 .center-line {
@@ -68,7 +68,7 @@ body::after {
   height: 1px;
   background: var(--grid-line);
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.06;
 }
 
 .slide {
@@ -88,4 +88,20 @@ body::after {
   height: 100vh;
   display: flex;
   overflow: hidden;
+}
+
+/* CTA Neon Accent */
+.cta-glow {
+  color: #00E5FF;
+  text-shadow:
+    0 0 8px rgba(0, 229, 255, 0.7),
+    0 0 20px rgba(0, 229, 255, 0.35);
+  transition: text-shadow 0.3s ease;
+}
+
+.cta-glow:hover {
+  text-shadow:
+    0 0 12px rgba(0, 229, 255, 0.95),
+    0 0 35px rgba(0, 229, 255, 0.55),
+    0 0 60px rgba(0, 229, 255, 0.2);
 }
