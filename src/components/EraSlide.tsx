@@ -8,9 +8,10 @@ interface EraSlideProps {
   direction: number;
   onNext: () => void;
   onPrev: () => void;
+  menuOpen?: boolean;
 }
 
-export default function EraSlide({ era, direction, onNext, onPrev }: EraSlideProps) {
+export default function EraSlide({ era, direction, onNext, onPrev, menuOpen }: EraSlideProps) {
   const variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? "100%" : "-100%",
@@ -61,8 +62,6 @@ export default function EraSlide({ era, direction, onNext, onPrev }: EraSlidePro
           </h1>
           <div className="flex items-center gap-3 text-[9px] tracking-[0.3em] font-mono opacity-40 uppercase">
             <span>{era.years}</span>
-            <span className="opacity-20">|</span>
-            <span>{era.location}</span>
           </div>
         </div>
         
@@ -72,30 +71,17 @@ export default function EraSlide({ era, direction, onNext, onPrev }: EraSlidePro
       <div className="flex-grow flex items-center justify-center pointer-events-none" />
 
       {/* Bottom Content */}
-      <div className="w-full grid grid-cols-12 gap-8 items-end z-20">
-        <div className="col-span-12 md:col-span-5">
-          <h3 className="text-[9px] tracking-[0.4em] uppercase mb-8 opacity-30">Key Milestones</h3>
-          <div className="space-y-5 relative">
-            <div className="absolute left-0 top-1 bottom-1 w-[1px] bg-foreground/10" />
-            {era.milestones.map((m, i) => (
-              <div key={i} className="relative pl-6">
-                <div className="absolute left-[-2px] top-2 w-[4px] h-[4px] bg-foreground/20 rounded-full" />
-                <p className="text-xs font-light text-foreground/80 leading-relaxed uppercase tracking-wider">
-                  {m.title}
-                </p>
-              </div>
+      {!menuOpen && (
+        <div className="w-full flex justify-end items-end z-20">
+          <div className="flex flex-wrap justify-end gap-2">
+            {era.skills.map((skill, i) => (
+              <span key={i} className="px-3 py-1 border border-foreground/10 text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:border-foreground/30 transition-all">
+                {skill}
+              </span>
             ))}
           </div>
         </div>
-        
-        <div className="col-span-12 md:col-span-7 flex flex-wrap justify-end gap-2 items-end">
-          {era.skills.map((skill, i) => (
-            <span key={i} className="px-3 py-1 border border-foreground/10 text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:border-foreground/30 transition-all">
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
+      )}
     </motion.div>
   );
 }

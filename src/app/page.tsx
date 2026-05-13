@@ -13,6 +13,7 @@ export default function Home() {
   const [index, setIndex] = useState(0); // 0 = Landing, 1-3 = Eras
   const [direction, setDirection] = useState(0);
   const [isThrottled, setIsThrottled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const totalSlides = cvData.eras.length + 1;
 
@@ -56,7 +57,7 @@ export default function Home() {
         </a>
       </div>
 
-      {index > 0 && currentEra && <FocalPoint era={currentEra} />}
+      {index > 0 && currentEra && <FocalPoint era={currentEra} onOpenChange={setMenuOpen} />}
 
       <div className="page-transition-container">
         <AnimatePresence initial={false} custom={direction} mode="wait">
@@ -67,12 +68,13 @@ export default function Home() {
               onJump={(i) => { setDirection(1); setIndex(i); }}
             />
           ) : (
-            <EraSlide 
-              key={index} 
-              era={currentEra!} 
-              direction={direction} 
+            <EraSlide
+              key={index}
+              era={currentEra!}
+              direction={direction}
               onNext={() => paginate(1)}
               onPrev={() => paginate(-1)}
+              menuOpen={menuOpen}
             />
           )}
         </AnimatePresence>

@@ -1,6 +1,9 @@
 export interface Milestone {
   title: string;
+  years?: string;
   description: string;
+  skills?: string[];
+  image?: string;
 }
 
 export interface Era {
@@ -25,28 +28,32 @@ export const cvData = {
       title: "Foundation",
       years: "2007 – 2016",
       location: "Hamburg",
-      narrative: "Where it all began. A strong focus on the intersection of business strategy and human resources. This era was dedicated to building a profound understanding of organizational dynamics, establishing the foundation for my future in product leadership.",
+      narrative: "Looking back, that period laid the foundation for my structured way of thinking. From my basic military service to my business apprenticeship and on to college—each stage taught me a different approach to organization. Competitive sports came into the picture and showed me what high performance in a team really means. Today, these experiences form the basis for managing complex products and fostering genuine team dynamics.",
       milestones: [
         {
-          title: "Bachelor of Arts in Business Administration (FH Stralsund)",
-          description: "Graduated with a focus on organizational management, HR strategy, and business economics — building the analytical foundation for later product work."
+          title: "Eliteschool of Sports\nHighschool Diploma",
+          years: "2007",
+          description: "I graduated from the Elite School of Sports. Competitive sports played a major role during those years. In paddling, there was a clear principle: individual motivation is essential, but measurable performance comes exclusively from teamwork. Together with my basic military service, my commercial apprenticeship, and my business studies, this phase laid the foundation for my methodological and disciplinary approach.",
+          skills: ["Team Performance", "Discipline", "High Performance", "Mental Resilience", "Leadership", "Goal Setting"]
         },
         {
-          title: "HR Consultant at CareerTeam & pluss Holding",
-          description: "Hands-on experience in talent acquisition, process design, and stakeholder communication across mid-size and enterprise clients."
+          title: "Apprenticeship\nFinances & Insurances",
+          years: "2008–2011",
+          description: "A three-year training program to become an insurance and finance specialist. There, I learned the basics of client consulting and business processes. It was a solid introduction to professional work environments.",
+          skills: ["Client Advisory", "Risk Assessment", "Financial Products", "Business Operations", "Communication", "Process Management"]
         },
         {
-          title: "Strategic focus on talent acquisition and process optimization",
-          description: "Developed and implemented scalable recruitment frameworks that reduced time-to-hire and improved candidate quality across multiple verticals."
+          title: "Management Assistant\n& Wakeboard Coach",
+          years: "2011–2012",
+          description: "Combined operational management support with coaching athletes of all skill levels — developing leadership, communication, and the ability to break down complex skills into learnable steps.",
+          skills: ["Coaching", "Operations", "Team Management", "Event Organization", "Communication", "Leadership"]
         },
         {
-          title: "Apprenticeship Finance and Insurance",
-          description: "Completed a formal apprenticeship in finance and insurance, building a strong foundation in client advisory, risk assessment, and financial products."
+          title: "Bachelor of Arts\nin Business Administration",
+          years: "2012–2016",
+          description: "I studied business administration with a focus on human resources management and international business management. In addition to my academic studies, I was active in the student consulting firm and was responsible for organizing and executing various industry conferences.",
+          skills: ["HR Management", "International Business", "Strategy", "Student Consulting", "Project Management", "Conference Management", "Academic Research"]
         },
-        {
-          title: "Wakeboard Coach",
-          description: "Trained and coached athletes of all skill levels in wakeboarding — developing leadership, communication, and the ability to break down complex skills into learnable steps."
-        }
       ],
       skills: ["Business Administration", "Recruitment Strategy", "Process Optimization", "HR Management"]
     },
@@ -58,20 +65,28 @@ export const cvData = {
       narrative: "Transitioning into full-scale Product Management at XING. Leading the Active Sourcing portfolio with a focus on data-driven decision making and cross-functional team leadership in an agile environment.",
       milestones: [
         {
-          title: "Managed a 50M € product portfolio",
-          description: "Led a cross-functional team at New Work SE (XING) responsible for the Active Sourcing product suite — balancing feature development, revenue targets, and user satisfaction."
+          title: "HR Consultant",
+          years: "2017–2019",
+          description: "Worked as an HR consultant in digital recruiting. Focused on executive search and managing tech-related positions. Collaborated directly with hiring managers and guided candidates through the process from initial contact to contract signing.",
+          skills: ["Executive Search", "Digital Recruiting", "Tech Recruiting", "Stakeholder Management", "Candidate Management", "Process Design"]
         },
         {
-          title: "Increased AI campaign response rates by 80%",
-          description: "Designed and shipped AI-driven messaging features that personalized recruiter outreach at scale, significantly improving engagement metrics."
+          title: "Recruiting Consultant",
+          years: "2019–2021",
+          description: "Recruiting role at pluss Holding GmbH. Responsible for day-to-day recruitment and standardizing internal recruiting workflows. Here, I learned how to break down long-standing procedures and transformed them into efficient, reliable processes based on KPIs",
+          skills: ["Process Design", "KPI Management", "Workflow Optimization", "Talent Acquisition", "Stakeholder Management", "Data Analysis"]
         },
         {
-          title: "Boosted conversion rates by 60% through targeted UX redesigns",
-          description: "Ran data-backed UX experiments across core user flows, iterating rapidly with design and engineering to measurably improve conversion."
+          title: "Recruiting Consultant\n& Interim Product Manager",
+          years: "2021–2023",
+          description: "I started at XING in recruiting and later moved to product management. I took the unique opportunity to switch sides and applied my knowledge of HR processes directly to the development of B2B solutions. This internal pivot allowed me to design tools not only from a technical standpoint, but also from the perspective of actual users.",
+          skills: ["Product Management", "B2B Solutions", "User Research", "HR Tech", "Agile", "Roadmapping", "Cross-functional Leadership"]
         },
         {
-          title: "Certified Agile Scrum Product Owner & Scrum Master",
-          description: "Deepened expertise in agile delivery frameworks, applying both roles across multiple product teams to improve sprint velocity and team alignment."
+          title: "Product Manager",
+          years: "2023–2025",
+          description: "At XING, I took on product ownership for the Active Sourcing portfolio in a €50 million market segment. I led product development from the initial concept through to launch. My key takeaway from this role: scaling complex products within an established system while ensuring a balance between technical feasibility and real user value",
+          skills: ["Product Ownership", "Portfolio Management", "Active Sourcing", "Go-to-Market", "UX Design", "Technical Feasibility", "Data-driven Decisions"]
         }
       ],
       skills: ["Product Strategy", "Scrum", "A/B Testing", "UX Design", "Stakeholder Management", "Data Analytics"]
@@ -97,6 +112,37 @@ export const cvData = {
         }
       ],
       skills: ["AI Agents", "LLMs", "Python", "MLOps", "AI Governance", "Next.js", "Prompt Engineering"]
+    },
+    {
+      id: "04",
+      title: "Stories that go beyond the ordinary.",
+      years: "",
+      location: "",
+      narrative: "",
+      milestones: [
+        {
+          title: "Competitive Sport",
+          description: "Years of competitive sports at the international level. Among my most significant milestones are my titles as German and European champion in dragon boat racing. The greatest physical and mental test, however, was the Vendée Va'a—the world's toughest outrigger race across the open ocean. It was an experience that ultimately shaped my understanding of endurance, resilience, and true teamwork—and continues to do so.",
+          skills: [],
+          image: "/outrigger.png"
+        },
+        {
+          title: "App Development",
+          description: "Development of mi'ti, an AI-powered mental health productivity dashboard. The focus is on combining habit tracking with \"mindful automation.\" At the heart of the project is the design of a proprietary context engine that intelligently processes everyday data and translates it into automated yet mindful workflows.",
+          skills: []
+        },
+        {
+          title: "Product at Heart Summit",
+          description: "",
+          skills: []
+        },
+        {
+          title: "Around the World",
+          description: "",
+          skills: []
+        }
+      ],
+      skills: []
     }
   ],
   globalSkills: [

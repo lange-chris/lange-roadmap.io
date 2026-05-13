@@ -6,6 +6,7 @@ import { Era } from "@/data/cvData";
 
 interface FocalPointProps {
   era: Era;
+  onOpenChange?: (open: boolean) => void;
 }
 
 const RADIUS = 200;
@@ -13,10 +14,10 @@ const CENTER_R = 40;   // radius of the central circle (w-20 / 2)
 const NODE_R = 9;      // radius of each node circle
 
 function getAngle(i: number, total: number) {
-  return ((360 / total) * i - 90) * (Math.PI / 180);
+  return ((360 / total) * i + 135) * (Math.PI / 180);
 }
 
-export default function FocalPoint({ era }: FocalPointProps) {
+export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
   const [vp, setVp] = useState({ w: 1440, h: 900 });
@@ -39,12 +40,39 @@ export default function FocalPoint({ era }: FocalPointProps) {
 
   return (
     <>
+
+      {/* Skills panel – bottom center */}
+      <AnimatePresence>
+        {selected !== null && nodes[selected]?.skills && (
+          <motion.div
+            key={`skills-${selected}`}
+            className="fixed bottom-16 left-0 right-0 z-30 flex flex-wrap justify-center gap-2 px-8"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {nodes[selected]?.skills!.map((skill, i) => (
+              <motion.span
+                key={skill}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.05 }}
+                className="px-3 py-1 border border-[rgba(0,229,255,0.25)] text-[9px] uppercase tracking-widest text-[rgba(0,229,255,0.7)]"
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Description panel – top right */}
       <AnimatePresence mode="wait">
         {!open ? (
           <motion.div
             key="era-narrative"
-            className="fixed top-20 right-8 z-30 max-w-[280px] text-right"
+            className="fixed top-20 right-24 z-30 max-w-[320px] text-right"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 16 }}
@@ -57,18 +85,29 @@ export default function FocalPoint({ era }: FocalPointProps) {
         ) : selected !== null ? (
           <motion.div
             key={`node-${selected}`}
-            className="fixed top-20 right-8 z-30 max-w-[280px] text-right"
+            className="fixed top-20 right-24 z-30 max-w-[320px] text-right"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <p className="text-[9px] tracking-[0.3em] uppercase text-foreground/30 mb-2">
-              {nodes[selected].title}
+              {nodes[selected]?.title}
             </p>
             <p className="text-[20px] leading-relaxed text-foreground/60 font-light">
-              {nodes[selected].description}
+              {nodes[selected]?.description}
             </p>
+            {nodes[selected]?.image && (
+              <div className="mt-4 pointer-events-none">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={nodes[selected].image!}
+                  alt=""
+                  className="w-full object-contain"
+                  style={{ filter: "invert(1)", opacity: 0.15, transform: "rotateY(180deg)" }}
+                />
+              </div>
+            )}
           </motion.div>
         ) : null}
       </AnimatePresence>
@@ -109,7 +148,11 @@ export default function FocalPoint({ era }: FocalPointProps) {
             const ny = cy + Math.sin(a) * RADIUS;
             const isSelected = selected === i;
             return (
-              <motion.g key={`node-${i}`}>
+              <motion.g
+                key={`node-${i}`}
+                style={{ cursor: "pointer", pointerEvents: "auto" }}
+                onClick={() => setSelected((prev) => (prev === i ? null : i))}
+              >
                 <motion.circle
                   cx={nx} cy={ny} r={NODE_R}
                   fill="none"
@@ -130,6 +173,8 @@ export default function FocalPoint({ era }: FocalPointProps) {
                   style={{ transformOrigin: `${nx}px ${ny}px` }}
                   transition={{ duration: 0.35, delay: i * 0.1 + 0.08 }}
                 />
+                {/* Invisible larger hit area */}
+                <circle cx={nx} cy={ny} r={20} fill="transparent" />
               </motion.g>
             );
           })}
@@ -173,11 +218,19 @@ export default function FocalPoint({ era }: FocalPointProps) {
               onClick={() => setSelected((prev) => (prev === i ? null : i))}
             >
               <p
-                className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200"
+                className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 whitespace-pre-line"
                 style={{ color: isSelected ? "#00E5FF" : "rgba(224,224,224,0.65)" }}
               >
                 {node.title}
               </p>
+              {node.years && (
+                <p
+                  className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 mt-0.5"
+                  style={{ color: isSelected ? "rgba(0,229,255,0.7)" : "rgba(224,224,224,0.4)" }}
+                >
+                  {node.years}
+                </p>
+              )}
             </motion.div>
           );
         })}
@@ -192,7 +245,7 @@ export default function FocalPoint({ era }: FocalPointProps) {
           transform: "translate(-50%, -50%)",
           pointerEvents: "auto",
         }}
-        onClick={() => { setOpen((v) => !v); setSelected(null); }}
+        onClick={() => { const next = !open; setOpen(next); setSelected(null); onOpenChange?.(next); }}
       >
         <motion.div
           animate={{ scale: open ? 1.45 : 1 }}
