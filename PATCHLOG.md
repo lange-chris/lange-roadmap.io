@@ -1,5 +1,28 @@
 # Patchlog
 
+## 2026-05-14 — Session 4: Content & Copy Updates
+
+### LandingSlide.tsx
+- Removed Era 04 ("Stories that go beyond the ordinary.") from the landing page era list (`.slice(0, 3)`)
+- Slogan changed: "EMPOWER TEAMS. BUILD AI" → "Empower Teams | Build Products"
+- Subheader: removed "strategy" → "shaping AI-driven products"
+
+### cvData.ts — Era 03: THE AI ERA
+- Replaced all 3 milestone titles with new certifications/courses:
+  - "Agile Product Owner & Scrum Master Certificate" (06–07/2025)
+  - "Product Management for AI & Data Science Course" (11/2025)
+  - "AI Project Management (18-Week Fulltime Bootcamp)" (01–06/2026)
+- Added descriptions and 5–7 skills to each milestone
+
+### cvData.ts — Era 04: Stories that go beyond the ordinary.
+- **Competitive Sport**: "Years of..." → "Decades of..."
+- **App Development**: description added (mi'ti AI productivity dashboard)
+- **Product at Heart Summit**: description added (volunteering 2026)
+- **Around the World**: description added (travel across Europe, Florida, etc.)
+- **The Team**: new 5th milestone added (Sportsteam Hamburg & Loveboat org history)
+
+---
+
 ## 2026-05-13 — Session 3: Outrigger Image & Content Updates
 
 ### FocalPoint.tsx

@@ -32,16 +32,16 @@ export default function LandingSlide({ onStart, onJump }: LandingSlideProps) {
       {/* Headline & Description */}
       <div className="mb-16">
         <h2 className="text-sm md:text-lg tracking-[0.3em] uppercase mb-4 opacity-80">
-          EMPOWER TEAMS. BUILD AI
+          Empower Teams | Build Products
         </h2>
         <p className="text-xs md:text-sm tracking-[0.08em] opacity-60 uppercase">
-          18 years of growth – from HR-Consulting to leading cross-functional teams and shaping AI-driven product strategy
+          18 years of growth – from HR-Consulting to leading cross-functional teams and shaping AI-driven products
         </p>
       </div>
 
       {/* Centered Eras Preview - Jumps to content */}
       <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center justify-center mb-16">
-        {cvData.eras.map((era, i) => (
+        {cvData.eras.slice(0, 3).map((era, i) => (
           <div
             key={era.id}
             onClick={() => onJump(i + 1)}
