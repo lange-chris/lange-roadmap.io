@@ -34,7 +34,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
   }, [era.id]);
 
   const isMobile = vp.w < 768;
-  const RADIUS = isMobile ? Math.min(vp.w * 0.3, 110) : 200;
+  const RADIUS = isMobile ? Math.min(vp.w * 0.25, 90) : 200;
   const CENTER_R = isMobile ? 30 : 40;
 
   const cx = vp.w / 2;
@@ -73,7 +73,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
       <AnimatePresence mode="wait">
         {!open ? (
           <motion.div
-            className="fixed top-24 left-6 right-6 md:top-20 md:bottom-auto md:left-auto md:right-24 z-30 md:max-w-[320px] text-center md:text-right"
+            className="fixed top-40 left-6 right-6 md:top-20 md:bottom-auto md:left-auto md:right-24 z-30 md:max-w-[320px] text-center md:text-right"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 16 }}
@@ -86,7 +86,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
         ) : selected !== null ? (
           <motion.div
             key={`node-${selected}`}
-            className="fixed top-24 left-4 right-4 md:top-20 md:bottom-auto md:left-auto md:right-24 z-30 md:max-w-[320px] text-center md:text-right bg-background/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-4 md:p-0 rounded-2xl md:rounded-none border border-foreground/10 md:border-none shadow-xl md:shadow-none"
+            className="fixed top-40 left-4 right-4 md:top-20 md:bottom-auto md:left-auto md:right-24 z-30 md:max-w-[320px] text-center md:text-right bg-background/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-4 md:p-0 rounded-2xl md:rounded-none border border-foreground/10 md:border-none shadow-xl md:shadow-none"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 16 }}
@@ -216,7 +216,10 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
                 left: tx,
                 top: ty,
                 transform: `translate(${alignX}, ${alignY})`,
-                width: 160,
+                maxWidth: isMobile 
+                  ? (textAlign === 'right' ? Math.max(tx - 10, 80) : textAlign === 'left' ? Math.max(vp.w - tx - 10, 80) : vp.w - 40)
+                  : 160,
+                width: isMobile ? undefined : 160,
                 pointerEvents: "auto",
                 textAlign,
               }}

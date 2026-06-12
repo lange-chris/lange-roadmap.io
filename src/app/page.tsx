@@ -84,7 +84,7 @@ export default function Home() {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className="relative h-screen w-screen bg-[var(--background)] overflow-hidden font-sans"
+      className="relative h-screen w-screen bg-[var(--background)] overflow-hidden font-sans touch-none"
     >
       <GridBackground />
       

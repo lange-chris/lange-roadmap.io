@@ -18,12 +18,12 @@ export default function LandingSlide({ onStart, onJump }: LandingSlideProps) {
       className="slide flex flex-col items-center justify-center text-center select-none"
     >
       {/* Top Tagline */}
-      <p className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase opacity-40 mb-8 md:mb-16 mt-8 md:mt-0">
+      <p className="text-[10px] md:text-[11px] tracking-[0.2em] md:tracking-[0.5em] uppercase opacity-40 mb-8 md:mb-16 mt-8 md:mt-0">
         AI Product Manager · Hamburg
       </p>
 
       {/* Main Name */}
-      <h1 className="text-4xl md:text-[86px] font-medium tracking-[0.15em] leading-tight text-foreground uppercase mb-6 md:mb-12">
+      <h1 className="text-4xl md:text-[86px] font-medium tracking-[0.05em] md:tracking-[0.15em] leading-tight text-foreground uppercase mb-6 md:mb-12">
         CHRISTOPH<br />LANGE
       </h1>
 
