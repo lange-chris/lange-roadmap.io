@@ -305,6 +305,17 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
             }
             className="w-2.5 h-2.5 bg-[#00E5FF] rounded-full shadow-[0_0_12px_rgba(0,229,255,0.7)] group-hover:shadow-[0_0_20px_rgba(0,229,255,1)] transition-shadow duration-300"
           />
+
+          {!open && (
+            <motion.div 
+              className="absolute -bottom-6 whitespace-nowrap text-[8px] tracking-[0.3em] font-mono group-hover:opacity-100 transition-opacity text-[#00E5FF]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {isMobile ? "TAP TO EXPLORE" : "CLICK TO EXPLORE"}
+            </motion.div>
+          )}
         </motion.div>
       </motion.div>
     </>

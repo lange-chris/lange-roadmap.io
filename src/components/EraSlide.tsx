@@ -70,18 +70,8 @@ export default function EraSlide({ era, direction, onNext, onPrev, menuOpen }: E
       {/* Middle Section */}
       <div className="flex-grow flex items-center justify-center pointer-events-none" />
 
-      {/* Bottom Content */}
-      {!menuOpen && (
-        <div className="w-full flex justify-center md:justify-end items-end z-20 pb-8 md:pb-0 px-4 md:px-0">
-          <div className="flex flex-wrap justify-center md:justify-end gap-2">
-            {era.skills.map((skill, i) => (
-              <span key={i} className="px-3 py-1 border border-foreground/10 text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:border-foreground/30 transition-all">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Bottom Content / Safe Area */}
+      <div className="w-full flex justify-center items-end z-20 pb-8 md:pb-0 px-4 md:px-0 pointer-events-none" />
     </motion.div>
   );
 }
