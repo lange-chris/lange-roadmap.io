@@ -9,8 +9,6 @@ interface FocalPointProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-const RADIUS = 200;
-const CENTER_R = 40;   // radius of the central circle (w-20 / 2)
 const NODE_R = 9;      // radius of each node circle
 
 function getAngle(i: number, total: number) {
@@ -35,8 +33,12 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
     setSelected(null);
   }, [era.id]);
 
+  const isMobile = vp.w < 768;
+  const RADIUS = isMobile ? Math.min(vp.w * 0.3, 110) : 200;
+  const CENTER_R = isMobile ? 30 : 40;
+
   const cx = vp.w / 2;
-  const cy = vp.h / 2;
+  const cy = isMobile ? vp.h * 0.65 : vp.h / 2;
 
   return (
     <>
@@ -46,7 +48,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
         {selected !== null && nodes[selected]?.skills && (
           <motion.div
             key={`skills-${selected}`}
-            className="fixed bottom-16 left-0 right-0 z-30 flex flex-wrap justify-center gap-2 px-8"
+            className="fixed bottom-20 md:bottom-16 left-0 right-0 z-30 flex flex-wrap justify-center gap-2 px-4 md:px-8"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
@@ -71,21 +73,20 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
       <AnimatePresence mode="wait">
         {!open ? (
           <motion.div
-            key="era-narrative"
-            className="fixed top-20 right-24 z-30 max-w-[320px] text-right"
+            className="fixed top-24 left-6 right-6 md:top-20 md:bottom-auto md:left-auto md:right-24 z-30 md:max-w-[320px] text-center md:text-right"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <p className="text-[20px] leading-relaxed text-foreground/50 font-light">
+            <p className="text-[13px] md:text-[20px] leading-relaxed text-foreground/50 font-light">
               {era.narrative}
             </p>
           </motion.div>
         ) : selected !== null ? (
           <motion.div
             key={`node-${selected}`}
-            className="fixed top-20 right-24 z-30 max-w-[320px] text-right"
+            className="fixed top-24 left-4 right-4 md:top-20 md:bottom-auto md:left-auto md:right-24 z-30 md:max-w-[320px] text-center md:text-right bg-background/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-4 md:p-0 rounded-2xl md:rounded-none border border-foreground/10 md:border-none shadow-xl md:shadow-none"
             initial={{ opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 16 }}
@@ -94,7 +95,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
             <p className="text-[9px] tracking-[0.3em] uppercase text-foreground/30 mb-2 whitespace-pre-line">
               {nodes[selected]?.title} {nodes[selected]?.company && ` | ${nodes[selected]?.company}`}
             </p>
-            <p className="text-[20px] leading-relaxed text-foreground/60 font-light whitespace-pre-line">
+            <p className="text-[12px] md:text-[20px] leading-relaxed text-foreground/60 font-light whitespace-pre-line">
               {nodes[selected]?.description}
             </p>
             {nodes[selected]?.image && (
@@ -230,14 +231,14 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
                 style={{ justifyContent: textAlign === "right" ? "flex-end" : textAlign === "center" ? "center" : "flex-start" }}
               >
                 <p
-                  className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 whitespace-pre-line"
+                  className="text-[10px] md:text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 whitespace-pre-line"
                   style={{ color: isSelected ? "#00E5FF" : "rgba(224,224,224,0.65)" }}
                 >
                   {node.title}
                 </p>
                 {node.company && (
                   <span 
-                    className="text-[10px] tracking-[0.15em] uppercase ml-2 mt-[2px] shrink-0" 
+                    className="text-[8px] md:text-[10px] tracking-[0.15em] uppercase ml-2 mt-[2px] shrink-0" 
                     style={{ color: "rgba(224,224,224,0.4)" }}
                   >
                     | {node.company}
@@ -246,7 +247,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
               </div>
               {node.years && (
                 <p
-                  className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 mt-0.5"
+                  className="text-[9px] md:text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 mt-0.5"
                   style={{ color: isSelected ? "rgba(0,229,255,0.7)" : "rgba(224,224,224,0.4)" }}
                 >
                   {node.years}

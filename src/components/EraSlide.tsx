@@ -51,13 +51,13 @@ export default function EraSlide({ era, direction, onNext, onPrev, menuOpen }: E
       className="slide cursor-grab active:cursor-grabbing select-none"
     >
       {/* Top Header */}
-      <div className="flex justify-between items-start w-full z-20">
-        <div className="max-w-[40vw]">
+      <div className="flex justify-between items-start w-full z-20 px-6 md:px-0">
+        <div className="max-w-full md:max-w-[50vw]">
           <div className="flex items-center gap-2 mb-6 opacity-30">
             <span className="text-[9px] font-mono tracking-[0.2em] uppercase">Era {era.id}</span>
             <div className="w-8 h-[1px] bg-foreground" />
           </div>
-          <h1 className="text-3xl md:text-5xl font-medium tracking-[0.1em] mb-4 text-foreground leading-tight uppercase">
+          <h1 className="text-2xl md:text-5xl font-medium tracking-[0.1em] mb-4 text-foreground leading-tight uppercase">
             {era.title}
           </h1>
           <div className="flex items-center gap-3 text-[9px] tracking-[0.3em] font-mono opacity-40 uppercase">
@@ -72,8 +72,8 @@ export default function EraSlide({ era, direction, onNext, onPrev, menuOpen }: E
 
       {/* Bottom Content */}
       {!menuOpen && (
-        <div className="w-full flex justify-end items-end z-20">
-          <div className="flex flex-wrap justify-end gap-2">
+        <div className="w-full flex justify-center md:justify-end items-end z-20 pb-8 md:pb-0 px-4 md:px-0">
+          <div className="flex flex-wrap justify-center md:justify-end gap-2">
             {era.skills.map((skill, i) => (
               <span key={i} className="px-3 py-1 border border-foreground/10 text-[9px] uppercase tracking-widest opacity-60 hover:opacity-100 hover:border-foreground/30 transition-all">
                 {skill}
