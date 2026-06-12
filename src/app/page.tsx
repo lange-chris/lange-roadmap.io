@@ -17,6 +17,7 @@ export default function Home() {
   const [direction, setDirection] = useState(0);
   const [isThrottled, setIsThrottled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const totalSlides = cvData.eras.length + 1;
 
@@ -44,6 +45,27 @@ export default function Home() {
     }
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isThrottled || touchStartX === null) return;
+    const currentX = e.touches[0].clientX;
+    const diff = touchStartX - currentX;
+
+    if (Math.abs(diff) > 50) { // 50px threshold for swipe
+      paginate(diff > 0 ? 1 : -1);
+      setIsThrottled(true);
+      setTouchStartX(null);
+      setTimeout(() => setIsThrottled(false), 1000);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStartX(null);
+  };
+
   const currentEra = index > 0 ? cvData.eras[index - 1] : null;
 
   // Prevent hydration mismatch
@@ -59,6 +81,9 @@ export default function Home() {
   return (
     <main 
       onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       className="relative h-screen w-screen bg-[var(--background)] overflow-hidden font-sans"
     >
       <GridBackground />
