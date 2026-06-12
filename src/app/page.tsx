@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     setIsClient(true);
-    const auth = localStorage.getItem("portfolio_auth");
+    const auth = sessionStorage.getItem("portfolio_auth");
     if (auth === "true") setIsAuthenticated(true);
   }, []);
 
@@ -73,7 +73,7 @@ export default function Home() {
 
   if (!isAuthenticated) {
     return <PasswordScreen onSuccess={() => {
-      localStorage.setItem("portfolio_auth", "true");
+      sessionStorage.setItem("portfolio_auth", "true");
       setIsAuthenticated(true);
     }} />;
   }
