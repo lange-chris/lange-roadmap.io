@@ -16,6 +16,11 @@
 - **page.tsx**: Added a global touch-handler (`onTouchStart`, `onTouchMove`, `onTouchEnd`) on the root `<main>` element, enabling smooth swipe navigation across all slides (including the landing slide).
 - **Touch Override**: Applied `touch-action: none` to the main container to ensure native mobile browsers don't intercept horizontal swipes with false vertical scroll events.
 
+### Security & UX Polishing
+- **Stricter Access Control (`page.tsx`)**: Upgraded authentication persistence from `localStorage` to `sessionStorage`. Visitors are now required to re-authenticate with the access code every time they open a new browser session or tab.
+- **Removed Redundancy (`EraSlide.tsx`)**: Removed the static skill tags from the bottom right of the era slides to declutter the UI and shift full focus to the interactive constellation.
+- **Enhanced Discoverability (`FocalPoint.tsx`)**: Added a subtly pulsing "TAP TO EXPLORE" (mobile) / "CLICK TO EXPLORE" (desktop) text hint beneath the central focal point to instantly guide new users toward the interaction.
+
 ---
 
 
