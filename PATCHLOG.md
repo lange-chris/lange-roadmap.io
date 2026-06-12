@@ -1,5 +1,24 @@
 # Patchlog
 
+## 2026-06-12 — Session 6: Comprehensive Mobile Layout Fixes
+
+### Mobile Typography & Spacing
+- **LandingSlide**: Reduced `letter-spacing` (tracking) on the main header strictly for mobile (`tracking-[0.05em]`) to prevent ugly word breaking.
+- **EraSlide**: Scaled down the era titles (`text-2xl` on mobile) to fit neatly on narrow screens.
+
+### FocalPoint (Mobile Constellation)
+- **Positioning**: Shifted the center of the constellation (`cy`) to the lower half of the screen (`vp.h * 0.65`) on mobile.
+- **Narrative Panel**: Pushed down the descriptive narrative box (`top-40`) to prevent it from overlapping with the `EraSlide` header text.
+- **Responsive Text Wrapping**: Implemented dynamic `maxWidth` constraints for the constellation text labels. Text near the left/right screen edges now intelligently wraps to the next line instead of overflowing outside the viewport.
+- **Skills Panel**: Moved the skills tags to `bottom-20` on mobile, slotting neatly above the navigation dots.
+
+### Global Touch Navigation
+- **page.tsx**: Added a global touch-handler (`onTouchStart`, `onTouchMove`, `onTouchEnd`) on the root `<main>` element, enabling smooth swipe navigation across all slides (including the landing slide).
+- **Touch Override**: Applied `touch-action: none` to the main container to ensure native mobile browsers don't intercept horizontal swipes with false vertical scroll events.
+
+---
+
+
 ## 2026-06-11 — Session 5: UI Polish, Auth & Content Updates
 
 ### FocalPoint.tsx
