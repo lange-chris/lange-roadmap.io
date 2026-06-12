@@ -10,6 +10,10 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Christoph Lange | Product & AI Journey",
   description: "A chronological exploration of a decade in product management and AI innovation.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({

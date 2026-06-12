@@ -4,6 +4,7 @@ export interface Milestone {
   description: string;
   skills?: string[];
   image?: string;
+  company?: string;
 }
 
 export interface Era {
@@ -33,24 +34,28 @@ export const cvData = {
         {
           title: "Eliteschool of Sports\nHighschool Diploma",
           years: "2007",
+          company: "Elite School of Sports Neubrandenburg",
           description: "I graduated from the Elite School of Sports. Competitive sports played a major role during those years. In paddling, there was a clear principle: individual motivation is essential, but measurable performance comes exclusively from teamwork. Together with my basic military service, my commercial apprenticeship, and my business studies, this phase laid the foundation for my methodological and disciplinary approach.",
           skills: ["Team Performance", "Discipline", "High Performance", "Mental Resilience", "Leadership", "Goal Setting"]
         },
         {
           title: "Apprenticeship\nFinances & Insurances",
           years: "2008–2011",
+          company: "Ergo Insurance",
           description: "A three-year training program to become an insurance and finance specialist. There, I learned the basics of client consulting and business processes. It was a solid introduction to professional work environments.",
           skills: ["Client Advisory", "Risk Assessment", "Financial Products", "Business Operations", "Communication", "Process Management"]
         },
         {
           title: "Management Assistant\n& Wakeboard Coach",
           years: "2011–2012",
+          company: "SkiRixen USA",
           description: "Combined operational management support with coaching athletes of all skill levels — developing leadership, communication, and the ability to break down complex skills into learnable steps.",
           skills: ["Coaching", "Operations", "Team Management", "Event Organization", "Communication", "Leadership"]
         },
         {
           title: "Bachelor of Arts\nin Business Administration",
           years: "2012–2016",
+          company: "University of applied Sciences Stralsund",
           description: "I studied business administration with a focus on human resources management and international business management. In addition to my academic studies, I was active in the student consulting firm and was responsible for organizing and executing various industry conferences.",
           skills: ["HR Management", "International Business", "Strategy", "Student Consulting", "Project Management", "Conference Management", "Academic Research"]
         },
@@ -67,25 +72,29 @@ export const cvData = {
         {
           title: "HR Consultant",
           years: "2017–2019",
+          company: "Careerteam",
           description: "Worked as an HR consultant in digital recruiting. Focused on executive search and managing tech-related positions. Collaborated directly with hiring managers and guided candidates through the process from initial contact to contract signing.",
           skills: ["Executive Search", "Digital Recruiting", "Tech Recruiting", "Stakeholder Management", "Candidate Management", "Process Design"]
         },
         {
           title: "Recruiting Consultant",
           years: "2019–2021",
+          company: "pluss Holding GmbH",
           description: "Recruiting role at pluss Holding GmbH. Responsible for day-to-day recruitment and standardizing internal recruiting workflows. Here, I learned how to break down long-standing procedures and transformed them into efficient, reliable processes based on KPIs",
           skills: ["Process Design", "KPI Management", "Workflow Optimization", "Talent Acquisition", "Stakeholder Management", "Data Analysis"]
         },
         {
           title: "Recruiting Consultant\n& Interim Product Manager",
           years: "2021–2023",
+          company: "XING",
           description: "I started at XING in recruiting and later moved to product management. I took the unique opportunity to switch sides and applied my knowledge of HR processes directly to the development of B2B solutions. This internal pivot allowed me to design tools not only from a technical standpoint, but also from the perspective of actual users.",
           skills: ["Product Management", "B2B Solutions", "User Research", "HR Tech", "Agile", "Roadmapping", "Cross-functional Leadership"]
         },
         {
           title: "Product Manager",
           years: "2023–2025",
-          description: "At XING, I took on product ownership for the Active Sourcing portfolio in a €50 million market segment. I led product development from the initial concept through to launch. My key takeaway from this role: scaling complex products within an established system while ensuring a balance between technical feasibility and real user value",
+          company: "XING",
+          description: "At XING, I took on product ownership for the Active Sourcing portfolio, which generated a revenue of €50 million. I led product development from the initial concept through to launch. My key takeaway from this role: scaling complex products within an established system while ensuring a balance between technical feasibility and real user value",
           skills: ["Product Ownership", "Portfolio Management", "Active Sourcing", "Go-to-Market", "UX Design", "Technical Feasibility", "Data-driven Decisions"]
         }
       ],
@@ -113,7 +122,7 @@ export const cvData = {
         {
           title: "AI Project Management\n(18-Week Fulltime\nBootcamp)",
           years: "01–06/2026",
-          description: "I am currently enrolled in an intensive, full-time bootcamp to become an AI Project Manager. Here, I am deepening my practical knowledge of applied data science and MLOps. My goal is not only to understand AI models in theory, but also to be able to oversee their implementation from the data stage all the way through to a production-ready cloud architecture.",
+          description: "Going back to the roots with Python programming and Exploratory Data Analysis (EDA) to truly understand the data behavior.\n\nDiving into MLOps to learn how to deploy, monitor, and scale machine learning models efficiently.\n\nBridging the gap between engineering and strategy to design agentic workflows and build finished, AI-driven products.",
           skills: ["MLOps", "Python", "Cloud Architecture", "Data Science", "Model Deployment", "Pipeline Design", "Applied AI"]
         }
       ],

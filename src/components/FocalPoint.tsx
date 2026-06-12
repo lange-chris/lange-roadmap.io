@@ -58,7 +58,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: i * 0.05 }}
-                className="px-3 py-1 border border-[rgba(0,229,255,0.25)] text-[9px] uppercase tracking-widest text-[rgba(0,229,255,0.7)]"
+                className="px-4 py-1.5 border border-[rgba(0,229,255,0.35)] text-xs uppercase tracking-widest text-[rgba(0,229,255,0.9)] bg-[rgba(0,229,255,0.03)]"
               >
                 {skill}
               </motion.span>
@@ -91,10 +91,10 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
             exit={{ opacity: 0, x: 16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            <p className="text-[9px] tracking-[0.3em] uppercase text-foreground/30 mb-2">
-              {nodes[selected]?.title}
+            <p className="text-[9px] tracking-[0.3em] uppercase text-foreground/30 mb-2 whitespace-pre-line">
+              {nodes[selected]?.title} {nodes[selected]?.company && ` | ${nodes[selected]?.company}`}
             </p>
-            <p className="text-[20px] leading-relaxed text-foreground/60 font-light">
+            <p className="text-[20px] leading-relaxed text-foreground/60 font-light whitespace-pre-line">
               {nodes[selected]?.description}
             </p>
             {nodes[selected]?.image && (
@@ -168,10 +168,18 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
                   cx={nx} cy={ny} r={2.5}
                   fill={isSelected ? "#00E5FF" : "rgba(224,224,224,0.4)"}
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0, opacity: 0 }}
+                  animate={
+                    isSelected 
+                      ? { scale: 1.5, opacity: 1 } 
+                      : { scale: [1, 1.6, 1], opacity: [0.3, 0.9, 0.3] }
+                  }
+                  exit={{ scale: 0, opacity: 0, transition: { duration: 0.2, repeat: 0 } }}
                   style={{ transformOrigin: `${nx}px ${ny}px` }}
-                  transition={{ duration: 0.35, delay: i * 0.1 + 0.08 }}
+                  transition={
+                    isSelected 
+                      ? { duration: 0.3 }
+                      : { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }
+                  }
                 />
                 {/* Invisible larger hit area */}
                 <circle cx={nx} cy={ny} r={20} fill="transparent" />
@@ -217,12 +225,25 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
               transition={{ duration: 0.3, delay: i * 0.1 + 0.1 }}
               onClick={() => setSelected((prev) => (prev === i ? null : i))}
             >
-              <p
-                className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 whitespace-pre-line"
-                style={{ color: isSelected ? "#00E5FF" : "rgba(224,224,224,0.65)" }}
+              <div 
+                className="flex items-start"
+                style={{ justifyContent: textAlign === "right" ? "flex-end" : textAlign === "center" ? "center" : "flex-start" }}
               >
-                {node.title}
-              </p>
+                <p
+                  className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 whitespace-pre-line"
+                  style={{ color: isSelected ? "#00E5FF" : "rgba(224,224,224,0.65)" }}
+                >
+                  {node.title}
+                </p>
+                {node.company && (
+                  <span 
+                    className="text-[10px] tracking-[0.15em] uppercase ml-2 mt-[2px] shrink-0" 
+                    style={{ color: "rgba(224,224,224,0.4)" }}
+                  >
+                    | {node.company}
+                  </span>
+                )}
+              </div>
               {node.years && (
                 <p
                   className="text-[14px] tracking-[0.1em] uppercase leading-snug transition-colors duration-200 mt-0.5"
@@ -238,7 +259,7 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
 
       {/* Central circle — clickable HTML */}
       <motion.div
-        className="fixed z-20 cursor-pointer"
+        className="fixed z-20 cursor-pointer group"
         style={{
           left: cx,
           top: cy,
@@ -255,20 +276,30 @@ export default function FocalPoint({ era, onOpenChange }: FocalPointProps) {
           <motion.div
             animate={{ opacity: open ? 0.25 : 0.07 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 border border-foreground rounded-full"
+            className="absolute inset-0 border border-foreground rounded-full transition-colors duration-300 group-hover:border-[#00E5FF] group-hover:opacity-30"
           />
+          
+          {/* Sonar Ping Effect */}
+          {!open && (
+            <motion.div
+              animate={{ scale: [1, 3.5], opacity: [0.7, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", repeatDelay: 1.5 }}
+              className="absolute w-3 h-3 border border-[#00E5FF] rounded-full pointer-events-none"
+            />
+          )}
+
           <motion.div
             animate={
               open
-                ? { scale: 1.6, opacity: 0.75 }
-                : { scale: [1, 1.15, 1], opacity: [0.15, 0.3, 0.15] }
+                ? { scale: 1.6, opacity: 1 }
+                : { scale: [1, 1.3, 1], opacity: [0.6, 1, 0.6] }
             }
             transition={
               open
                 ? { duration: 0.3 }
-                : { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                : { duration: 3, repeat: Infinity, ease: "easeInOut" }
             }
-            className="w-2 h-2 bg-foreground rounded-full"
+            className="w-2.5 h-2.5 bg-[#00E5FF] rounded-full shadow-[0_0_12px_rgba(0,229,255,0.7)] group-hover:shadow-[0_0_20px_rgba(0,229,255,1)] transition-shadow duration-300"
           />
         </motion.div>
       </motion.div>

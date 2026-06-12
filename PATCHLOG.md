@@ -1,5 +1,24 @@
 # Patchlog
 
+## 2026-06-11 — Session 5: UI Polish, Auth & Content Updates
+
+### FocalPoint.tsx
+- **Sonar Ping & Visibility**: Redesigned the central interactive dot. Added a pulsing sonar ripple effect (`scale: [1, 3.5]`) and boosted the core dot's visibility with `bg-[#00E5FF]` and a constant neon glow. Added interactive hover states to the outer container ring.
+- **Skills Readability**: Enlarged skill tags to `text-xs` (12px), increased padding (`px-4 py-1.5`), boosted text opacity, and added a subtle `bg-[rgba(0,229,255,0.03)]` tint for better contrast.
+- **Description Formatting**: Added `whitespace-pre-line` to the narrative/description `<p>` tag to properly render line breaks from the data file.
+
+### cvData.ts
+- Updated the description for the "AI Project Management" milestone (Era 03). Replaced the single block with three distinct paragraphs detailing EDA, MLOps, and agentic workflows, formatted with `\n\n`.
+
+### page.tsx
+- **Access Control Integration**: Implemented application-level password protection (`isAuthenticated` state, `localStorage` check) to block access to the roadmap and prevent search engine indexing without requiring Vercel Pro.
+- **Social Links**: Replaced the text-based LinkedIn link and Lucide icon with a custom solid white LinkedIn SVG. Added a matching solid GitHub SVG linking to `https://github.com/lange-chris`. Cleaned up unused `lucide-react` imports.
+
+### PasswordScreen.tsx (New Component)
+- Built a custom, fully animated lock screen matching the app's HUD aesthetic. Features access code validation ("lange26") and visual error handling ("Access Denied").
+
+### Cleanup
+- Removed unused Next.js boilerplate assets from `/public` (`file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`).
 ## 2026-05-14 — Session 4: Content & Copy Updates
 
 ### LandingSlide.tsx
